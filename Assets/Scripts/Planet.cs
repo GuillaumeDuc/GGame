@@ -16,6 +16,8 @@ public class Planet
         this.name = name;
         this.size = size;
         occupiedSize = 0;
+        // Default production
+        factories.AddRange(FactoryList.GetDefaultFactories(size));
     }
 
     public void CreateUnit(Unit unit)

@@ -61,6 +61,14 @@ public class ResourceCollection : Collection<Resource>, IEnumerator, IEnumerable
         }
     }
 
+    public void Multiply(float multiplier)
+    {
+        for (int i = 0; i < Items.Count; i++)
+        {
+            Items[i].amount = (int)(Items[i].amount * multiplier);
+        }
+    }
+
     public Resource Get(Resource resource)
     {
         for (int i = 0; i < Items.Count; i++)

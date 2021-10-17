@@ -7,46 +7,55 @@ public class Factory
 {
     string name;
     public int currentLv;
-    ResourceCollection resourcesProduced;
-    private Dictionary<int, List<Resource>> resourcesPerLv = new Dictionary<int, List<Resource>>();
-    private Dictionary<int, List<Resource>> nextLvCostPerLv = new Dictionary<int, List<Resource>>();
+    private Dictionary<int, ResourceCollection> resourcesPerLv = new Dictionary<int, ResourceCollection>();
+    private Dictionary<int, ResourceCollection> nextLvCostPerLv = new Dictionary<int, ResourceCollection>();
 
-    public Factory(string name, Resource resource)
+    public Factory(string name, Resource resource, int max = 10, float incrPercent = .1f)
     {
         this.name = name;
-        resourcesProduced = new ResourceCollection() { resource };
+        initFactory(new ResourceCollection() { resource }, new ResourceCollection() { resource }, max, incrPercent);
     }
 
-
-    public Factory(string name, ResourceCollection resources)
+    public Factory(string name, ResourceCollection resourcesProduction, ResourceCollection nextLvCost, int max = 10, float incrPercent = .1f)
     {
         this.name = name;
-        resourcesProduced = new ResourceCollection(resources);
+        initFactory(resourcesProduction, nextLvCost, max, incrPercent);
     }
 
-    public Factory(string name, List<Resource> resourcesList, List<Resource> nextLvCost, int max = 10, int incrPercent = 10)
+    public Factory(Factory f)
     {
-        this.name = name;
+        this.name = f.name;
+        this.currentLv = f.currentLv;
+        this.resourcesPerLv = new Dictionary<int, ResourceCollection>(f.resourcesPerLv);
+        this.nextLvCostPerLv = new Dictionary<int, ResourceCollection>(f.nextLvCostPerLv);
+    }
+
+    private void initFactory(ResourceCollection resourcesProduction, ResourceCollection nextLvCost, int maxLv, float incrPercent)
+    {
         this.currentLv = 1;
-        initFactory(resourcesList, nextLvCost, max, incrPercent);
-    }
-    private void initFactory(List<Resource> resourcesList, List<Resource> nextLvCost, int maxLv, float incrPercent)
-    {
-        List<Resource> currResources = new List<Resource>(resourcesList);
-        for (int i = 1; i <= maxLv; i++)
+        ResourceCollection currResources = new ResourceCollection(resourcesProduction);
+        ResourceCollection currNextLvCost = new ResourceCollection(nextLvCost);
+        // First lv
+        resourcesPerLv.Add(currentLv, new ResourceCollection(currResources));
+        nextLvCostPerLv.Add(currentLv, new ResourceCollection(currNextLvCost));
+        for (int i = currentLv + 1; i <= maxLv; i++)
         {
+            currResources.Multiply(1 + incrPercent);
+            currNextLvCost.Multiply(1 + incrPercent);
+            resourcesPerLv.Add(i, new ResourceCollection(currResources));
+            nextLvCostPerLv.Add(i, new ResourceCollection(currNextLvCost));
         }
     }
 
     public ResourceCollection GetResources()
     {
-        return resourcesProduced;
+        return resourcesPerLv[currentLv];
     }
 
     public override string ToString()
     {
         string produced = " ";
-        foreach (Resource resource in resourcesProduced)
+        foreach (Resource resource in GetResources())
         {
             produced += resource + " ";
         }

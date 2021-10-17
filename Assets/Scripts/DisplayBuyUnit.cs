@@ -57,6 +57,7 @@ public class DisplayBuyUnit : DisplayUI
     private void OnClickBuy(Unit unit)
     {
         Store.selectedPlanet.CreateUnit(unit);
+        Store.UpdateUI();
     }
 
     private void DisplayUnitDescription(GameObject content, Unit unit)
