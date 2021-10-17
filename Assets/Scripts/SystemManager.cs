@@ -12,8 +12,8 @@ public class SystemManager : MonoBehaviour
         // Store selectedPlanet
         Store.selectedPlanet = new Planet("Your Planet", 100);
         solarSystem.AddPlanet(Store.selectedPlanet);
-        Factory factory = new Factory("Mine Exploitation", new Resource(Resource.TypeResource.Metal, 70));
-        Factory factory2 = new Factory("Gaz Exploitation", new Resource(Resource.TypeResource.Gaz, 30));
+        Factory factory = new Factory("Mine Exploitation", new Resource(Resource.TypeResource.Metal, 100));
+        Factory factory2 = new Factory("Gaz Exploitation", new Resource(Resource.TypeResource.Gaz, 10));
         Store.selectedPlanet.factories.AddRange(new List<Factory>() { factory, factory2 });
         ProduceResources();
         InvokeRepeating("ProduceResources", 2.0f, .5f);

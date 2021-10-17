@@ -1,20 +1,20 @@
 using System.Collections.Generic;
 
-public static class UnitShop
+public static class UnitList
 {
     ///// Ships ///// 
-    static Ship quadrireme = new Ship("Quadrireme", new List<Resource>() {
+    static Ship quadrireme = new Ship("Quadrireme", new ResourceCollection() {
         new Resource(Resource.TypeResource.Metal, 1000),
         new Resource(Resource.TypeResource.Gaz, 500),
     });
-    static Ship quinquereme = new Ship("Quinquereme", new List<Resource>() {
+    static Ship quinquereme = new Ship("Quinquereme", new ResourceCollection() {
         new Resource(Resource.TypeResource.Metal, 750),
         new Resource(Resource.TypeResource.Gaz, 400)
     });
     ///// Defense ///// 
     static Defense canon = new Defense("Canon", new Resource(Resource.TypeResource.Metal, 500));
     ///// Troop ///// 
-    static Troop infantry = new Troop("Infantry", new List<Resource>() {
+    static Troop infantry = new Troop("Infantry", new ResourceCollection() {
         new Resource(Resource.TypeResource.Metal, 200),
         new Resource(Resource.TypeResource.Water, 100)
     });

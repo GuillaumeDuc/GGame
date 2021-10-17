@@ -24,15 +24,15 @@ public class DisplayBuyUnit : DisplayUI
 
     void AddAllUnits()
     {
-        UnitShop.getShips().ForEach(ship =>
+        UnitList.getShips().ForEach(ship =>
         {
             AddUnitInView(ship);
         });
-        UnitShop.getDefenses().ForEach(defense =>
+        UnitList.getDefenses().ForEach(defense =>
         {
             AddUnitInView(defense);
         });
-        UnitShop.getTroops().ForEach(troop =>
+        UnitList.getTroops().ForEach(troop =>
         {
             AddUnitInView(troop);
         });

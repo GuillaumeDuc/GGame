@@ -6,10 +6,10 @@ public class DisplayResource : DisplayUI
     public override void Display(Planet p)
     {
         string displayS = "";
-        p.resources.ForEach(resource =>
+        foreach (Resource resource in p.resources)
         {
             displayS += resource + " ";
-        });
+        }
         this.gameObject.GetComponent<Text>().text = displayS;
     }
 }
