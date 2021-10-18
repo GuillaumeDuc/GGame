@@ -99,6 +99,16 @@ public class ResourceCollection : Collection<Resource>, IEnumerator, IEnumerable
         return enough;
     }
 
+    public override string ToString()
+    {
+        string s = "";
+        for (int i = 0; i < Items.Count; i++)
+        {
+            s += Items[i] + "\n";
+        }
+        return s;
+    }
+
     //IEnumerator
     public bool MoveNext()
     {

@@ -12,8 +12,8 @@ public class SystemManager : MonoBehaviour
         // Store selectedPlanet
         Store.selectedPlanet = new Planet("Your Planet", 100);
         solarSystem.AddPlanet(Store.selectedPlanet);
-        ProduceResources();
-        InvokeRepeating("ProduceResources", 2.0f, .5f);
+        Store.UpdateUI();
+        InvokeRepeating("ProduceResources", 1, 1);
     }
 
     void ProduceResources()

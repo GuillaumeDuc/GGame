@@ -17,14 +17,22 @@ public class Planet
         this.size = size;
         occupiedSize = 0;
         // Default production
-        factories.AddRange(FactoryList.GetDefaultFactories(size));
+        factories.AddRange(FactoryList.GetDefaultFactories());
+        int deepness = 1;
+        factories.ForEach(factory =>
+        {
+            ResourceCollection resourcesNeeded = new ResourceCollection(factory.GetResources());
+            resourcesNeeded.Multiply(size / deepness);
+            factory.initFactory(resourcesNeeded, resourcesNeeded);
+            deepness++;
+        });
     }
 
     public void CreateUnit(Unit unit)
     {
-        if (resources.ContainsEnough(unit.costToCreate))
+        bool canConsume = ConsumeResource(unit.costToCreate);
+        if (canConsume)
         {
-            resources.Substract(unit.costToCreate);
             try
             {
                 units[unit] += 1;
@@ -36,11 +44,35 @@ public class Planet
         }
     }
 
+    public bool ConsumeResource(ResourceCollection resourceNeeded)
+    {
+        if (resources.ContainsEnough(resourceNeeded))
+        {
+            resources.Substract(resourceNeeded);
+            return true;
+        }
+        return false;
+    }
+
     public void ProduceResources()
     {
         factories.ForEach(factory =>
         {
             resources.Add(factory.GetResources());
         });
+    }
+
+    public void LevelUpFactory(Factory factory)
+    {
+        Factory matchFactory = factories.First(f => f.Equals(factory));
+        // Check for max level
+        if (factory.currentLv < factory.GetMaxLevel())
+        {
+            bool canConsume = ConsumeResource(matchFactory.GetResourcesNeededLvUp());
+            if (canConsume)
+            {
+                matchFactory.LevelUp();
+            }
+        }
     }
 }

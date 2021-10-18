@@ -5,10 +5,11 @@ using System.Linq;
 
 public class Factory
 {
-    string name;
+    public string name;
+    public Sprite sprite;
     public int currentLv;
-    private Dictionary<int, ResourceCollection> resourcesPerLv = new Dictionary<int, ResourceCollection>();
-    private Dictionary<int, ResourceCollection> nextLvCostPerLv = new Dictionary<int, ResourceCollection>();
+    private Dictionary<int, ResourceCollection> resourcesPerLv;
+    private Dictionary<int, ResourceCollection> nextLvCostPerLv;
 
     public Factory(string name, Resource resource, int max = 10, float incrPercent = .1f)
     {
@@ -30,9 +31,11 @@ public class Factory
         this.nextLvCostPerLv = new Dictionary<int, ResourceCollection>(f.nextLvCostPerLv);
     }
 
-    private void initFactory(ResourceCollection resourcesProduction, ResourceCollection nextLvCost, int maxLv, float incrPercent)
+    public void initFactory(ResourceCollection resourcesProduction, ResourceCollection nextLvCost, int maxLv = 10, float incrPercent = .1f)
     {
         this.currentLv = 1;
+        resourcesPerLv = new Dictionary<int, ResourceCollection>();
+        nextLvCostPerLv = new Dictionary<int, ResourceCollection>();
         ResourceCollection currResources = new ResourceCollection(resourcesProduction);
         ResourceCollection currNextLvCost = new ResourceCollection(nextLvCost);
         // First lv
@@ -41,15 +44,52 @@ public class Factory
         for (int i = currentLv + 1; i <= maxLv; i++)
         {
             currResources.Multiply(1 + incrPercent);
-            currNextLvCost.Multiply(1 + incrPercent);
+            currNextLvCost.Multiply(100 * incrPercent);
             resourcesPerLv.Add(i, new ResourceCollection(currResources));
             nextLvCostPerLv.Add(i, new ResourceCollection(currNextLvCost));
         }
     }
 
+    public void LevelUp()
+    {
+        if (this.currentLv < GetMaxLevel())
+        {
+            this.currentLv += 1;
+        }
+    }
+
+    public int GetMaxLevel()
+    {
+        return resourcesPerLv.Count();
+    }
+
+    public ResourceCollection GetResourcesNeededLvUp()
+    {
+        return nextLvCostPerLv[currentLv];
+    }
+
     public ResourceCollection GetResources()
     {
         return resourcesPerLv[currentLv];
+    }
+
+    public override bool Equals(object obj)
+    {
+        //Check for null and compare run-time types.
+        if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+        {
+            return false;
+        }
+        else
+        {
+            Factory f = (Factory)obj;
+            return (name == f.name);
+        }
+    }
+
+    public override int GetHashCode()
+    {
+        return name.GetHashCode();
     }
 
     public override string ToString()
