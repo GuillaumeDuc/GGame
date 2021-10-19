@@ -7,17 +7,23 @@ public class DisplayBuyFactory : DisplayUI
     public GameObject unitContentPrefab;
     public GameObject unitFieldPrefab;
 
-    private bool added = false;
+    private bool update = true;
+    private Planet selectedPlanet;
+
+    void Start()
+    {
+        selectedPlanet = Store.player != null ? Store.player.selectedPlanet : null;
+    }
 
     public override void Display(Planet p)
     {
         string displayS = "Factory\n";
         this.gameObject.GetComponent<Text>().text = displayS;
         // Only add them one time in UI
-        if (!added)
+        if (update)
         {
             AddAllFactories(p);
-            added = !added;
+            update = !update;
         }
     }
 
@@ -79,6 +85,17 @@ public class DisplayBuyFactory : DisplayUI
         {
             Destroy(child.gameObject);
         }
-        added = !added;
+        update = !update;
+    }
+
+    void Update()
+    {
+        // Watch for planet change
+        if (Store.player != null && (selectedPlanet == null || !selectedPlanet.Equals(Store.player.selectedPlanet)))
+        {
+            selectedPlanet = Store.player.selectedPlanet;
+            ResetContent();
+            Display(Store.player.selectedPlanet);
+        }
     }
 }

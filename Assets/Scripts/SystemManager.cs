@@ -34,7 +34,7 @@ public class SystemManager : MonoBehaviour
 
     void ProduceResources()
     {
-        Store.player.selectedPlanet.ProduceResources();
+        Store.player.ProduceResourcesFromPlanets();
         Store.UpdateUI();
     }
 }

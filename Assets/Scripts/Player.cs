@@ -34,4 +34,12 @@ public class Player
             SetPlanet(planet);
         });
     }
+
+    public void ProduceResourcesFromPlanets()
+    {
+        planets.ForEach(planet =>
+        {
+            planet.ProduceResources();
+        });
+    }
 }

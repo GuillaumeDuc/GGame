@@ -76,4 +76,23 @@ public class Planet
             }
         }
     }
+
+    public override bool Equals(object obj)
+    {
+        //Check for null and compare run-time types.
+        if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+        {
+            return false;
+        }
+        else
+        {
+            Planet p = (Planet)obj;
+            return (name == p.name);
+        }
+    }
+
+    public override int GetHashCode()
+    {
+        return name.GetHashCode();
+    }
 }
