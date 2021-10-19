@@ -7,6 +7,7 @@ public class Planet
 {
     public string name;
     public long size, occupiedSize;
+    public Player owner;
     public List<Factory> factories = new List<Factory>();
     public ResourceCollection resources = new ResourceCollection();
     public Dictionary<Unit, int> units = new Dictionary<Unit, int>();

@@ -10,6 +10,11 @@ public class SolarSystem
         planets.Add(p);
     }
 
+    public void AddPlanet(List<Planet> listP)
+    {
+        planets.AddRange(listP);
+    }
+
     public List<Planet> GetPlanets()
     {
         return planets;

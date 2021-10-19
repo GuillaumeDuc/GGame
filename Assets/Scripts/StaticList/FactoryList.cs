@@ -11,11 +11,19 @@ public static class FactoryList
 
     public static List<Factory> GetFactories()
     {
-        return new List<Factory>() { metalFactory, gazFactory, waterFactory };
+        return new List<Factory>() {
+            new Factory(metalFactory),
+            new Factory(gazFactory),
+            new Factory(waterFactory)
+        };
     }
 
     public static List<Factory> GetDefaultFactories()
     {
-        return new List<Factory>() { metalFactory, gazFactory, waterFactory };
+        return new List<Factory>() {
+            new Factory(metalFactory),
+            new Factory(gazFactory),
+            new Factory(waterFactory)
+        };
     }
 }

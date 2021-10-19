@@ -24,8 +24,8 @@ public class DisplayManager : MonoBehaviour
     public void UpdateUI()
     {
         // Always update resources
-        resources.Display(Store.selectedPlanet);
+        resources.Display(Store.player.selectedPlanet);
         // Update current displayed list
-        displayedUI.ForEach(disp => disp.Display(Store.selectedPlanet));
+        displayedUI.ForEach(disp => disp.Display(Store.player.selectedPlanet));
     }
 }

@@ -4,6 +4,6 @@ using UnityEngine;
 
 public static class Store
 {
-    public static Planet selectedPlanet;
+    public static Player player;
     public static System.Action UpdateUI;
 }

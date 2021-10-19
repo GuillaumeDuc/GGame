@@ -50,7 +50,7 @@ public class DisplayBuyFactory : DisplayUI
 
     private void OnClickUp(Factory factory)
     {
-        Store.selectedPlanet.LevelUpFactory(factory);
+        Store.player.selectedPlanet.LevelUpFactory(factory);
         ResetContent();
         Store.UpdateUI();
     }
