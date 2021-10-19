@@ -11,13 +11,13 @@ public class Factory
     private Dictionary<int, ResourceCollection> resourcesPerLv;
     private Dictionary<int, ResourceCollection> nextLvCostPerLv;
 
-    public Factory(string name, Resource resource, int max = 10, float incrPercent = .1f)
+    public Factory(string name, Resource resource, int max = 10, float incrPercent = .5f)
     {
         this.name = name;
         initFactory(new ResourceCollection() { resource }, new ResourceCollection() { resource }, max, incrPercent);
     }
 
-    public Factory(string name, ResourceCollection resourcesProduction, ResourceCollection nextLvCost, int max = 10, float incrPercent = .1f)
+    public Factory(string name, ResourceCollection resourcesProduction, ResourceCollection nextLvCost, int max = 10, float incrPercent = .5f)
     {
         this.name = name;
         initFactory(resourcesProduction, nextLvCost, max, incrPercent);
@@ -31,7 +31,7 @@ public class Factory
         this.nextLvCostPerLv = new Dictionary<int, ResourceCollection>(f.nextLvCostPerLv);
     }
 
-    public void initFactory(ResourceCollection resourcesProduction, ResourceCollection nextLvCost, int maxLv = 10, float incrPercent = .1f)
+    public void initFactory(ResourceCollection resourcesProduction, ResourceCollection nextLvCost, int maxLv = 10, float incrPercent = .5f)
     {
         this.currentLv = 1;
         resourcesPerLv = new Dictionary<int, ResourceCollection>();
@@ -44,7 +44,7 @@ public class Factory
         for (int i = currentLv + 1; i <= maxLv; i++)
         {
             currResources.Multiply(1 + incrPercent);
-            currNextLvCost.Multiply(100 * incrPercent);
+            currNextLvCost.Multiply(10 * incrPercent);
             resourcesPerLv.Add(i, new ResourceCollection(currResources));
             nextLvCostPerLv.Add(i, new ResourceCollection(currNextLvCost));
         }

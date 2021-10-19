@@ -68,7 +68,7 @@ public class DisplayBuyUnit : DisplayUI
         SetLabel(content, "Shield", "" + unit.shield);
         if (!(unit is Defense))
         {
-            SetLabel(content, "Overland Speed Test test test teteeeest", unit is Ship ? ((Ship)unit).overlandSpeed + "" : ((Troop)unit).overlandSpeed + "");
+            SetLabel(content, "Overland Speed", unit is Ship ? ((Ship)unit).overlandSpeed + "" : ((Troop)unit).overlandSpeed + "");
         }
         SetLabel(content, "Cost", unit.GetCost());
     }
