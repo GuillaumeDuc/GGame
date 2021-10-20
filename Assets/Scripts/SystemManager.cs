@@ -20,12 +20,12 @@ public class SystemManager : MonoBehaviour
         Player enemy1 = new Player("Enemy 1", p3);
         Player enemy2 = new Player("Enemy 2", p4);
 
-        // Store players info
-        Store.player = player;
-
         // Create solar system
         solarSystem = new SolarSystem();
         solarSystem.AddPlanet(new List<Planet>() { p1, p2, p3, p4 });
+
+        // Store info
+        Store.SetStore(player, new List<Player>() { enemy1, enemy2 }, solarSystem);
 
         // UI
         Store.UpdateUI();
