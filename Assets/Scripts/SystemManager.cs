@@ -5,13 +5,11 @@ using UnityEngine.UI;
 
 public class SystemManager : MonoBehaviour
 {
-    private SolarSystem solarSystem;
     void Start()
     {
-
         // Create Planets
         Planet p1 = new Planet("Player's first Planet", 100);
-        Planet p2 = new Planet("Planet 2", 20);
+        Planet p2 = new Planet("Planet 2", 100);
         Planet p3 = new Planet("Planet Enemy 1", 50);
         Planet p4 = new Planet("Planet Enemy 2", 500);
 
@@ -21,7 +19,7 @@ public class SystemManager : MonoBehaviour
         Player enemy2 = new Player("Enemy 2", p4);
 
         // Create solar system
-        solarSystem = new SolarSystem();
+        SolarSystem solarSystem = new SolarSystem();
         solarSystem.AddPlanet(new List<Planet>() { p1, p2, p3, p4 });
 
         // Store info
