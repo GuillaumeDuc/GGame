@@ -103,5 +103,17 @@ public class ProceduralPlanet : MonoBehaviour
     void GenerateColors()
     {
         colorGenerator.UpdateColors();
+        foreach (TerrainFace face in terrainFaces)
+        {
+            face.UpdateUV(colorGenerator);
+        }
+    }
+
+    void Update()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            meshFilters[i].transform.Rotate(0, 10 * Time.deltaTime, 0);
+        }
     }
 }
