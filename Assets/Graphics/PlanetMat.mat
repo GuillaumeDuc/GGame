@@ -36,8 +36,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats: []
+    m_Floats:
+    - AtmosphereIntensity: 0.87
+    - RimIntensity: 0.96
     m_Colors:
+    - AtmosphereColor: {r: 0.16140087, g: 0.47904402, b: 0.8773585, a: 0}
     - _ElevationMinMax: {r: 0, g: 0, b: 0, a: 0}
-    - _elevationMinMax: {r: 3.5, g: 3.8007326, b: 0, a: 0}
+    - _elevationMinMax: {r: 3.5, g: 3.7176676, b: 0, a: 0}
   m_BuildTextureStacks: []
