@@ -12,20 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1127688efaaef6c4dba226d335bf5395, type: 3}
   m_Name: Shape
   m_EditorClassIdentifier: 
-  planetRadius: 3.5
+  planetRadius: 3
   noiseLayers:
   - enabled: 1
     useFirstLayerAsMask: 0
     noiseSettings:
       filterType: 0
       simpleNoiseSettings:
-        strength: 0.1
-        numLayers: 4
-        baseRoughness: 0.99
-        roughness: 4.3
-        persistence: 0.19
+        strength: 0.05
+        numLayers: 5
+        baseRoughness: 1
+        roughness: 5
+        persistence: 0.15
         centre: {x: 0, y: 0, z: 0}
-        minValue: 0.61
+        minValue: 0.5
       rigidNoiseSettings:
         strength: 1
         numLayers: 1
@@ -40,13 +40,13 @@ MonoBehaviour:
     noiseSettings:
       filterType: 0
       simpleNoiseSettings:
-        strength: 0.27
+        strength: 0.1
         numLayers: 5
-        baseRoughness: 4.87
-        roughness: 0.83
-        persistence: 0.2
+        baseRoughness: 5
+        roughness: 5
+        persistence: 0.15
         centre: {x: 0, y: 0, z: 0}
-        minValue: 0.26
+        minValue: 0.5
       rigidNoiseSettings:
         strength: 1
         numLayers: 1

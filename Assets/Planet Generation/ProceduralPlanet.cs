@@ -113,7 +113,7 @@ public class ProceduralPlanet : MonoBehaviour
     {
         for (int i = 0; i < 6; i++)
         {
-            meshFilters[i].transform.Rotate(0, 10 * Time.deltaTime, 0);
+            meshFilters[i].transform.Rotate(0, 1 * Time.deltaTime, 0);
         }
     }
 }
