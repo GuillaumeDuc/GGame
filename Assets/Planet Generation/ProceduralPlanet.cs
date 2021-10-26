@@ -10,7 +10,6 @@ public class ProceduralPlanet : MonoBehaviour
     public ShapeSettings shapeSettings;
     public ColorSettings colorSettings;
 
-
     [HideInInspector]
     public bool shapeSettingsFoldout;
     [HideInInspector]
@@ -53,6 +52,7 @@ public class ProceduralPlanet : MonoBehaviour
             {
                 GameObject meshObj = new GameObject("mesh");
                 meshObj.transform.parent = transform;
+                meshObj.transform.position = gameObject.transform.position;
 
                 meshObj.AddComponent<MeshRenderer>();
                 meshFilters[i] = meshObj.AddComponent<MeshFilter>();
@@ -70,6 +70,33 @@ public class ProceduralPlanet : MonoBehaviour
         Initialize();
         GenerateMesh();
         GenerateColors();
+        GenerateClouds();
+    }
+
+    public void GenerateClouds()
+    {
+        if (this != null)
+        {
+            GameObject clouds = null;
+            string cloudName = "Clouds";
+            for (int i = 0; i < gameObject.transform.childCount; i++)
+            {
+                GameObject child = gameObject.transform.GetChild(i).gameObject;
+                if (child.name == cloudName)
+                {
+                    clouds = child;
+                }
+            }
+            if (clouds == null)
+            {
+                clouds = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                clouds.name = cloudName;
+                clouds.GetComponent<MeshRenderer>().material = colorSettings.cloudMaterial;
+            }
+            clouds.transform.position = gameObject.transform.position;
+            clouds.transform.parent = gameObject.transform;
+            clouds.transform.localScale = new Vector3(1, 1, 1) * shapeSettings.planetRadius * (1 + shapeGenerator.elevationMinMax.Max) * 2;
+        }
     }
 
     public void OnShapeSettingsUpdated()
@@ -113,7 +140,7 @@ public class ProceduralPlanet : MonoBehaviour
     {
         for (int i = 0; i < 6; i++)
         {
-            meshFilters[i].transform.Rotate(0, 1 * Time.deltaTime, 0);
+            gameObject.transform.Rotate(0, 0.5f * Time.deltaTime, 0);
         }
     }
 }

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Color
   m_EditorClassIdentifier: 
   planetMaterial: {fileID: 2100000, guid: e802e5d160fdc6342bcc86168b5e7c2b, type: 2}
+  cloudMaterial: {fileID: 2100000, guid: c0c81a3a899b011449f4ad00594f0afc, type: 2}
   biomeColorSettings:
     biomes:
     - gradient:
@@ -114,15 +115,15 @@ MonoBehaviour:
     - gradient:
         serializedVersion: 2
         key0: {r: 0.015686272, g: 0.34901962, b: 0.056770325, a: 0}
-        key1: {r: 0.048415814, g: 0.6037736, b: 0.17433995, a: 0}
+        key1: {r: 0.077874675, g: 0.4716981, b: 0.16662359, a: 0}
         key2: {r: 1, g: 1, b: 1, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
-        ctime0: 7325
-        ctime1: 28334
+        ctime0: 13107
+        ctime1: 33731
         ctime2: 65535
         ctime3: 0
         ctime4: 0
@@ -199,8 +200,8 @@ MonoBehaviour:
     blendAmount: 0.42
   oceanColor:
     serializedVersion: 2
-    key0: {r: 0.022027401, g: 0.0333191, b: 0.5188679, a: 1}
-    key1: {r: 0.06007476, g: 0.33013448, b: 0.4716981, a: 1}
+    key0: {r: 0, g: 0.0008984694, b: 0.05660379, a: 1}
+    key1: {r: 0, g: 0.11778977, b: 0.1792453, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
