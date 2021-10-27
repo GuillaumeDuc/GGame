@@ -33,18 +33,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Alpha: 0.6
-    - AlphaClip: 0.45
+    - Alpha: 0.55
+    - AlphaClip: 0.4
     - Atmosphere_Intensity: 0.08
-    - DistortionScale: 37.63
-    - DistortionSpeed: 0.008
+    - DistortionScale: 4.56
+    - DistortionSpeed: 0.08
     - Intensity: 7.02
-    - Power: 0.23
+    - Power: 0.08
     - RimIntensity: 8.2
-    - Scale: 49.28
+    - Scale: 4.05
     m_Colors:
     - AtmosphereColor: {r: 0.1856088, g: 0.722318, b: 0.9150943, a: 0}
-    - Speed: {r: 0.005, g: 0.002, b: 0, a: 0}
-    - VertexOffset: {r: 1.08, g: 0, b: 0, a: 0}
+    - Speed: {r: -0.002, g: 0.002, b: 0.02, a: 0}
+    - VertexOffset: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

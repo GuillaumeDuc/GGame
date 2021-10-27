@@ -43,5 +43,5 @@ Material:
     m_Colors:
     - AtmosphereColor: {r: 0.16078433, g: 0.4342178, b: 0.8784314, a: 0}
     - _ElevationMinMax: {r: 0, g: 0, b: 0, a: 0}
-    - _elevationMinMax: {r: -0.021248784, g: 0.03257992, b: 0, a: 0}
+    - _elevationMinMax: {r: -0.021238578, g: 0.032595724, b: 0, a: 0}
   m_BuildTextureStacks: []

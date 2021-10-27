@@ -25,9 +25,6 @@
             "m_Id": "ab84479bfd4d4d3282a79eff01bb51e9"
         },
         {
-            "m_Id": "65737e2da3f94511ad91e8a2e8af0487"
-        },
-        {
             "m_Id": "37e94b38912246ad9fc32de56f8af1f7"
         }
     ],
@@ -1590,31 +1587,6 @@
 }
 
 {
-    "m_SGVersion": 1,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector3ShaderProperty",
-    "m_ObjectId": "65737e2da3f94511ad91e8a2e8af0487",
-    "m_Guid": {
-        "m_GuidSerialized": "d257ceca-646d-40db-972e-41222669c183"
-    },
-    "m_Name": "VertexOffset",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "VertexOffset",
-    "m_DefaultReferenceName": "VertexOffset",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_Value": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0,
-        "w": 0.0
-    }
-}
-
-{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.TimeNode",
     "m_ObjectId": "6636ee87cbf5413080473f77a3b5fa73",
@@ -1913,7 +1885,7 @@
     },
     "m_SurfaceType": 1,
     "m_AlphaMode": 0,
-    "m_TwoSided": true,
+    "m_TwoSided": false,
     "m_AlphaClip": true,
     "m_CustomEditorGUI": ""
 }
@@ -2759,10 +2731,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -624.9998779296875,
-            "y": 41.00006866455078,
-            "width": 208.0,
-            "height": 302.0
+            "x": -605.0,
+            "y": 29.000022888183595,
+            "width": 130.0,
+            "height": 117.99999237060547
         }
     },
     "m_Slots": [

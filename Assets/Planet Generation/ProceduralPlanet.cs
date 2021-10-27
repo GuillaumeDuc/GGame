@@ -21,6 +21,9 @@ public class ProceduralPlanet : MonoBehaviour
     [SerializeField, HideInInspector]
     MeshFilter[] meshFilters;
     TerrainFace[] terrainFaces;
+    [SerializeField, HideInInspector]
+    MeshFilter[] meshClouds;
+
 
 #if UNITY_EDITOR
     private void OnValidate() => UnityEditor.EditorApplication.delayCall += _OnValidate;
@@ -70,33 +73,16 @@ public class ProceduralPlanet : MonoBehaviour
         Initialize();
         GenerateMesh();
         GenerateColors();
-        GenerateClouds();
+        GenerateCloudsMesh();
     }
 
-    public void GenerateClouds()
+    public void GenerateCloudsMesh()
     {
         if (this != null)
         {
-            GameObject clouds = null;
-            string cloudName = "Clouds";
-            for (int i = 0; i < gameObject.transform.childCount; i++)
-            {
-                GameObject child = gameObject.transform.GetChild(i).gameObject;
-                if (child.name == cloudName)
-                {
-                    clouds = child;
-                }
-            }
-            if (clouds == null)
-            {
-                clouds = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                clouds.name = cloudName;
-                clouds.GetComponent<MeshRenderer>().material = colorSettings.cloudMaterial;
-            }
-            clouds.transform.position = gameObject.transform.position;
-            clouds.transform.parent = gameObject.transform;
-            clouds.transform.localScale = new Vector3(1, 1, 1) * shapeSettings.planetRadius * (1 + shapeGenerator.elevationMinMax.Max) * 2;
+            GenerateClouds.GenerateMesh(meshClouds, gameObject, resolution, colorSettings, shapeSettings, shapeGenerator);
         }
+
     }
 
     public void OnShapeSettingsUpdated()
