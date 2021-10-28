@@ -25,20 +25,17 @@ public class PlanetCreation : MonoBehaviour
         {
             ShapeSettings.NoiseLayer noiseLayer = new ShapeSettings.NoiseLayer();
             planet.shapeSettings.noiseLayers[i] = noiseLayer;
-            if (i > 0)
+            NoiseSettings noiseSettings = new NoiseSettings();
+            if (i == 0)
+            {
+                noiseSettings = PlanetCreationHelper.GetSimpleNoiseSettings(5, 0.05f, 1, 5, 0.15f, 0.5f);
+            }
+            else
             {
                 noiseLayer.useFirstLayerAsMask = true;
+                // Random base roughness & roughness
+                noiseSettings = PlanetCreationHelper.GetSimpleNoiseSettings(5, 0.1f, Random.Range(5f, 10.0f), Random.Range(5f, 10.0f), 0.15f, 0.5f);
             }
-            NoiseSettings noiseSettings = new NoiseSettings();
-            noiseSettings.filterType = NoiseSettings.FilterType.Simple;
-            noiseSettings.simpleNoiseSettings = new NoiseSettings.SimpleNoiseSettings();
-            noiseSettings.simpleNoiseSettings.numLayers = 5;
-            noiseSettings.simpleNoiseSettings.strength = 1f;
-            noiseSettings.simpleNoiseSettings.baseRoughness = 1;
-            noiseSettings.simpleNoiseSettings.roughness = 5;
-            noiseSettings.simpleNoiseSettings.persistence = .2f;
-            noiseSettings.simpleNoiseSettings.minValue = 1f;
-
             noiseLayer.noiseSettings = noiseSettings;
         }
     }
@@ -61,51 +58,32 @@ public class PlanetCreation : MonoBehaviour
         alphaKey = new GradientAlphaKey[2];
         alphaKey[0].alpha = 1.0f;
         alphaKey[0].time = 0.0f;
-        alphaKey[1].alpha = 0.0f;
+        alphaKey[1].alpha = 1.0f;
         alphaKey[1].time = 1.0f;
 
         gradient.SetKeys(colorKey, alphaKey);
         planet.colorSettings.oceanColor = gradient;
 
-        SetBiome(planet.colorSettings, 3);
+        SetBiomes(planet.colorSettings);
     }
 
-    void SetBiome(ColorSettings colorSettings, int biomeNb)
+    void SetBiomes(ColorSettings colorSettings)
     {
         ColorSettings.BiomeColorSettings biomeColorSettings = new ColorSettings.BiomeColorSettings();
 
-        NoiseSettings noiseSettings = new NoiseSettings();
-        noiseSettings.filterType = NoiseSettings.FilterType.Simple;
-        noiseSettings.simpleNoiseSettings = new NoiseSettings.SimpleNoiseSettings();
+        NoiseSettings noiseSettings = PlanetCreationHelper.GetSimpleNoiseSettings(5, 0, 1, 1, 0.2f, 0.01f);
         biomeColorSettings.noise = noiseSettings;
-        biomeColorSettings.noiseOffset = 0.3f;
-        biomeColorSettings.noiseStrength = 2;
-        biomeColorSettings.blendAmount = 0.3f;
+        biomeColorSettings.noiseOffset = 0.2f;
+        biomeColorSettings.noiseStrength = 0.2f;
+        biomeColorSettings.blendAmount = 0f;
 
-        ColorSettings.BiomeColorSettings.Biome[] biomes = new ColorSettings.BiomeColorSettings.Biome[biomeNb];
-        for (int i = 0; i < biomes.Length; i++)
-        {
-            biomes[i] = new ColorSettings.BiomeColorSettings.Biome();
-            GradientColorKey[] colorKey;
-            GradientAlphaKey[] alphaKey;
-            Gradient gradient = new Gradient();
+        ColorSettings.BiomeColorSettings.Biome[] biomes = new ColorSettings.BiomeColorSettings.Biome[5];
+        biomes[0] = PlanetCreationHelper.GetSnowBiome(0);
+        biomes[1] = PlanetCreationHelper.GetTropicalBiome(0.1f);
+        biomes[2] = PlanetCreationHelper.GetEarthBiome(0.3f);
+        biomes[3] = PlanetCreationHelper.GetTropicalBiome(0.8f);
+        biomes[4] = PlanetCreationHelper.GetSnowBiome(1);
 
-            colorKey = new GradientColorKey[2];
-            colorKey[0].color = Color.green;
-            colorKey[0].time = 0.0f;
-            colorKey[1].color = Color.yellow;
-            colorKey[1].time = 1.0f;
-
-            alphaKey = new GradientAlphaKey[2];
-            alphaKey[0].alpha = 1.0f;
-            alphaKey[0].time = 0.0f;
-            alphaKey[1].alpha = 0.0f;
-            alphaKey[1].time = 1.0f;
-
-            gradient.SetKeys(colorKey, alphaKey);
-            biomes[i].gradient = gradient;
-            biomes[i].startHeight = i / (biomes.Length + 0.01f);
-        }
 
         colorSettings.biomeColorSettings = biomeColorSettings;
         colorSettings.biomeColorSettings.biomes = biomes;
