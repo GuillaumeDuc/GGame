@@ -6,15 +6,8 @@ public class ProceduralPlanet : MonoBehaviour
 {
     [Range(2, 256)]
     public int resolution = 10;
-    public bool autoUpdate = true;
-    public ShapeSettings shapeSettings;
-    public ColorSettings colorSettings;
-
-    [HideInInspector]
-    public bool shapeSettingsFoldout;
-    [HideInInspector]
-    public bool colorSettingsFoldout;
-
+    public ShapeSettings shapeSettings = new ShapeSettings();
+    public ColorSettings colorSettings = new ColorSettings();
     ShapeGenerator shapeGenerator = new ShapeGenerator();
     ColorGenerator colorGenerator = new ColorGenerator();
 
@@ -23,18 +16,6 @@ public class ProceduralPlanet : MonoBehaviour
     TerrainFace[] terrainFaces;
     [SerializeField, HideInInspector]
     MeshFilter[] meshClouds;
-
-
-#if UNITY_EDITOR
-    private void OnValidate() => UnityEditor.EditorApplication.delayCall += _OnValidate;
-
-    private void _OnValidate()
-    {
-        GeneratePlanet();
-    }
-#endif
-
-
 
     void Initialize()
     {
@@ -87,20 +68,14 @@ public class ProceduralPlanet : MonoBehaviour
 
     public void OnShapeSettingsUpdated()
     {
-        if (autoUpdate)
-        {
-            Initialize();
-            GenerateMesh();
-        }
+        Initialize();
+        GenerateMesh();
     }
 
     public void OnColorSettingsUpdated()
     {
-        if (autoUpdate)
-        {
-            Initialize();
-            GenerateColors();
-        }
+        Initialize();
+        GenerateColors();
     }
 
     void GenerateMesh()

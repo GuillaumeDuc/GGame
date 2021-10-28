@@ -2,15 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu()]
-public class ColorSettings : ScriptableObject
+public class ColorSettings
 {
     public Material planetMaterial;
     public Material cloudMaterial;
     public BiomeColorSettings biomeColorSettings;
     public Gradient oceanColor;
 
-    [System.Serializable]
     public class BiomeColorSettings
     {
         public Biome[] biomes;
@@ -19,7 +17,6 @@ public class ColorSettings : ScriptableObject
         [Range(0, 1)]
         public float blendAmount;
 
-        [System.Serializable]
         public class Biome
         {
             public Gradient gradient;
