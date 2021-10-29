@@ -7,22 +7,35 @@ public class Planet
 {
     public string name;
     public long size, occupiedSize;
+    public Player owner;
     public List<Factory> factories = new List<Factory>();
-    public List<Resource> resources = new List<Resource>();
+    public ResourceCollection resources = new ResourceCollection();
     public Dictionary<Unit, int> units = new Dictionary<Unit, int>();
+    public GameObject planetGO;
 
-    public Planet(string name, long size = 1)
+    public Planet(string name, long size = 1, GameObject planetGO = null)
     {
         this.name = name;
         this.size = size;
+        this.planetGO = planetGO;
         occupiedSize = 0;
+        // Default production
+        factories.AddRange(FactoryList.GetDefaultFactories());
+        int deepness = 1;
+        factories.ForEach(factory =>
+        {
+            ResourceCollection resourcesNeeded = new ResourceCollection(factory.GetResources());
+            resourcesNeeded.Multiply(size / deepness);
+            factory.initFactory(resourcesNeeded, resourcesNeeded);
+            deepness++;
+        });
     }
 
     public void CreateUnit(Unit unit)
     {
-        if (ContainsEnoughResources(unit.costToCreate))
+        bool canConsume = ConsumeResource(unit.costToCreate);
+        if (canConsume)
         {
-            ConsumeResources(unit.costToCreate);
             try
             {
                 units[unit] += 1;
@@ -34,65 +47,35 @@ public class Planet
         }
     }
 
+    public bool ConsumeResource(ResourceCollection resourceNeeded)
+    {
+        if (resources.ContainsEnough(resourceNeeded))
+        {
+            resources.Substract(resourceNeeded);
+            return true;
+        }
+        return false;
+    }
+
     public void ProduceResources()
     {
         factories.ForEach(factory =>
         {
-            foreach (Resource resource in factory.GetResources())
+            resources.Add(factory.GetResources());
+        });
+    }
+
+    public void LevelUpFactory(Factory factory)
+    {
+        Factory matchFactory = factories.First(f => f.Equals(factory));
+        // Check for max level
+        if (factory.currentLv < factory.GetMaxLevel())
+        {
+            bool canConsume = ConsumeResource(matchFactory.GetResourcesNeededLvUp());
+            if (canConsume)
             {
-                AddResource(resource);
+                matchFactory.LevelUp();
             }
-        });
-    }
-
-    public void ConsumeResources(List<Resource> list)
-    {
-        foreach (Resource resource in list)
-        {
-            SubstractResource(resource);
         }
-    }
-
-    private void AddResource(Resource add)
-    {
-        Resource resource = resources.Find(resource =>
-        {
-            return resource.type == add.type;
-        });
-
-        if (resource == null)
-        {
-            resources.Add(new Resource(add));
-        }
-        else
-        {
-            resource.amount += add.amount;
-        }
-    }
-
-    private void SubstractResource(Resource substract)
-    {
-        Resource resource = resources.Find(resource =>
-        {
-            return resource.type == substract.type;
-        });
-
-        if (resource != null)
-        {
-            resource.amount -= substract.amount;
-        }
-    }
-
-    private bool ContainsEnoughResources(List<Resource> resourcesNeeded)
-    {
-        bool enough = resourcesNeeded.Any(resourceNeeded =>
-        {
-            Resource match = resources.Find(resource =>
-            {
-                return resource.type == resourceNeeded.type;
-            });
-            return match == null || match.amount < resourceNeeded.amount;
-        });
-        return !enough;
     }
 }

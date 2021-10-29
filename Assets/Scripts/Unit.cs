@@ -10,6 +10,6 @@ public interface Unit
     int power { get; set; }
     int shield { get; set; }
     Sprite sprite { get; set; }
-    List<Resource> costToCreate { get; set; }
+    ResourceCollection costToCreate { get; set; }
     string GetCost();
 }

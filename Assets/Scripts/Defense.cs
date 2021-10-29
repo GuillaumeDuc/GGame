@@ -10,9 +10,9 @@ public class Defense : Unit
     public int power { get; set; }
     public int shield { get; set; }
     public Sprite sprite { get; set; }
-    public List<Resource> costToCreate { get; set; }
+    public ResourceCollection costToCreate { get; set; }
 
-    public Defense(string name, List<Resource> costToCreate)
+    public Defense(string name, ResourceCollection costToCreate)
     {
         this.name = name;
         this.costToCreate = costToCreate;
@@ -21,16 +21,16 @@ public class Defense : Unit
     public Defense(string name, Resource costToCreate)
     {
         this.name = name;
-        this.costToCreate = new List<Resource>() { costToCreate };
+        this.costToCreate = new ResourceCollection { costToCreate };
     }
 
     public string GetCost()
     {
         string s = "";
-        costToCreate.ForEach(resource =>
+        foreach (var resource in costToCreate)
         {
             s += resource + "\n";
-        });
+        }
         return s;
     }
 

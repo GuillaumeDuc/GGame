@@ -24,15 +24,15 @@ public class DisplayBuyUnit : DisplayUI
 
     void AddAllUnits()
     {
-        UnitShop.getShips().ForEach(ship =>
+        UnitList.getShips().ForEach(ship =>
         {
             AddUnitInView(ship);
         });
-        UnitShop.getDefenses().ForEach(defense =>
+        UnitList.getDefenses().ForEach(defense =>
         {
             AddUnitInView(defense);
         });
-        UnitShop.getTroops().ForEach(troop =>
+        UnitList.getTroops().ForEach(troop =>
         {
             AddUnitInView(troop);
         });
@@ -56,7 +56,8 @@ public class DisplayBuyUnit : DisplayUI
 
     private void OnClickBuy(Unit unit)
     {
-        Store.selectedPlanet.CreateUnit(unit);
+        Store.player.selectedPlanet.CreateUnit(unit);
+        Store.UpdateUI();
     }
 
     private void DisplayUnitDescription(GameObject content, Unit unit)
@@ -67,7 +68,7 @@ public class DisplayBuyUnit : DisplayUI
         SetLabel(content, "Shield", "" + unit.shield);
         if (!(unit is Defense))
         {
-            SetLabel(content, "Overland Speed Test test test teteeeest", unit is Ship ? ((Ship)unit).overlandSpeed + "" : ((Troop)unit).overlandSpeed + "");
+            SetLabel(content, "Overland Speed", unit is Ship ? ((Ship)unit).overlandSpeed + "" : ((Troop)unit).overlandSpeed + "");
         }
         SetLabel(content, "Cost", unit.GetCost());
     }
