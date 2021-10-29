@@ -36,6 +36,7 @@ public class PlanetSelection : MonoBehaviour
     void OnClick(Planet p)
     {
         Store.player.selectedPlanet = p;
+        Store.camera.gameObject.transform.position = new Vector3(p.planetGO.gameObject.transform.position.x, 0, 10);
         Store.UpdateUI();
     }
 

@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CloudMat
+  m_Shader: {fileID: -6465566751694194690, guid: 41e071bec002df54d9a5f8461bcff9f3, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - Alpha: 0.55
+    - AlphaClip: 0.4
+    - Atmosphere_Intensity: 0.08
+    - DistortionScale: 4.56
+    - DistortionSpeed: 0.08
+    - Intensity: 7.02
+    - Power: 0.08
+    - RimIntensity: 8.2
+    - Scale: 4.05
+    - _DistortionScale: 60
+    - _Scale: 0
+    - _distortionScale: 4
+    - _scale: 3.81
+    m_Colors:
+    - AtmosphereColor: {r: 0.1856088, g: 0.722318, b: 0.9150943, a: 0}
+    - Speed: {r: -0.002, g: 0.002, b: 0.02, a: 0}
+    - VertexOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
