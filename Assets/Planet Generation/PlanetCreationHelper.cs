@@ -15,6 +15,8 @@ public static class PlanetCreationHelper
         noiseSettings.simpleNoiseSettings.roughness = roughness;
         noiseSettings.simpleNoiseSettings.persistence = persistence;
         noiseSettings.simpleNoiseSettings.minValue = minValue;
+        // Put some random
+        noiseSettings.simpleNoiseSettings.centre = new Vector3(Random.Range(-100f, 100f), Random.Range(-100f, 100f), Random.Range(-100f, 100f));
         return noiseSettings;
     }
 
@@ -36,16 +38,16 @@ public static class PlanetCreationHelper
         return gradient;
     }
 
-    public static ColorSettings.BiomeColorSettings.Biome GetEarthBiome(float startHeight)
+    public static ColorSettings.BiomeColorSettings.Biome GetDesertBiome(float startHeight)
     {
         ColorSettings.BiomeColorSettings.Biome biome = new ColorSettings.BiomeColorSettings.Biome();
         Color[] colors = new Color[4];
         // Green
-        colors[0] = new Color(0, 0.5f, 0);
+        colors[0] = new Color(0.38f, 0.31f, 0.08f);
         // Yellow
-        colors[1] = new Color(0.6f, 0.6f, 0);
+        colors[1] = new Color(0.78f, 0.53f, 0.13f);
         // Brown
-        colors[2] = new Color(0.5f, 0.2f, 0);
+        colors[2] = new Color(0.95f, 0.88f, 0.43f);
         colors[3] = Color.white;
 
         biome.gradient = PlanetCreationHelper.GetGradient(colors);
@@ -55,10 +57,13 @@ public static class PlanetCreationHelper
     public static ColorSettings.BiomeColorSettings.Biome GetTropicalBiome(float startHeight)
     {
         ColorSettings.BiomeColorSettings.Biome biome = new ColorSettings.BiomeColorSettings.Biome();
-        Color[] colors = new Color[2];
+        Color[] colors = new Color[5];
         // Green
-        colors[0] = new Color(0, 0.3f, 0);
-        colors[1] = Color.white;
+        colors[0] = new Color(0.01f, 0.35f, 0.05f);
+        colors[1] = new Color(0.01f, 0.35f, 0.05f);
+        colors[2] = new Color(0.01f, 0.35f, 0.05f);
+        colors[3] = new Color(0.07f, 0.47f, 0.16f);
+        colors[4] = Color.white;
 
         biome.gradient = PlanetCreationHelper.GetGradient(colors);
         biome.startHeight = startHeight;
@@ -71,6 +76,19 @@ public static class PlanetCreationHelper
         Color[] colors = new Color[2];
         colors[0] = Color.gray;
         colors[1] = Color.white;
+
+        biome.gradient = PlanetCreationHelper.GetGradient(colors);
+        biome.startHeight = startHeight;
+        return biome;
+    }
+
+    public static ColorSettings.BiomeColorSettings.Biome GetAlienBiome(float startHeight)
+    {
+        ColorSettings.BiomeColorSettings.Biome biome = new ColorSettings.BiomeColorSettings.Biome();
+        Color[] colors = new Color[3];
+        colors[0] = Color.cyan;
+        colors[1] = Color.cyan;
+        colors[2] = Color.magenta;
 
         biome.gradient = PlanetCreationHelper.GetGradient(colors);
         biome.startHeight = startHeight;

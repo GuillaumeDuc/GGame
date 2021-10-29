@@ -42,6 +42,10 @@ Material:
     - Power: 0.08
     - RimIntensity: 8.2
     - Scale: 4.05
+    - _DistortionScale: 60
+    - _Scale: 0
+    - _distortionScale: 4
+    - _scale: 3.81
     m_Colors:
     - AtmosphereColor: {r: 0.1856088, g: 0.722318, b: 0.9150943, a: 0}
     - Speed: {r: -0.002, g: 0.002, b: 0.02, a: 0}

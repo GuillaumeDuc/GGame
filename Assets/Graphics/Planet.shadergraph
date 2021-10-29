@@ -1727,7 +1727,7 @@
             "x": -1448.0,
             "y": 706.0,
             "width": 184.0,
-            "height": 34.000003814697269
+            "height": 34.0
         }
     },
     "m_Slots": [
@@ -2703,7 +2703,7 @@
     "m_DefaultRefNameVersion": 1,
     "m_RefNameGeneratedByDisplayName": "RimIntensity",
     "m_DefaultReferenceName": "RimIntensity",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_rimIntensity",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
@@ -3437,7 +3437,7 @@
     "m_DefaultRefNameVersion": 1,
     "m_RefNameGeneratedByDisplayName": "AtmosphereIntensity",
     "m_DefaultReferenceName": "AtmosphereIntensity",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_atmosphereIntensity",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
@@ -3462,7 +3462,7 @@
     "m_DefaultRefNameVersion": 1,
     "m_RefNameGeneratedByDisplayName": "AtmosphereColor",
     "m_DefaultReferenceName": "AtmosphereColor",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_atmosphereColor",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
