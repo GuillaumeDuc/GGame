@@ -4244,7 +4244,7 @@
     "m_DefaultRefNameVersion": 1,
     "m_RefNameGeneratedByDisplayName": "Smoothness",
     "m_DefaultReferenceName": "Smoothness",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_smoothness",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,

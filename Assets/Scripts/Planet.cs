@@ -11,11 +11,13 @@ public class Planet
     public List<Factory> factories = new List<Factory>();
     public ResourceCollection resources = new ResourceCollection();
     public Dictionary<Unit, int> units = new Dictionary<Unit, int>();
+    public GameObject planetGO;
 
-    public Planet(string name, long size = 1)
+    public Planet(string name, long size = 1, GameObject planetGO = null)
     {
         this.name = name;
         this.size = size;
+        this.planetGO = planetGO;
         occupiedSize = 0;
         // Default production
         factories.AddRange(FactoryList.GetDefaultFactories());
@@ -75,24 +77,5 @@ public class Planet
                 matchFactory.LevelUp();
             }
         }
-    }
-
-    public override bool Equals(object obj)
-    {
-        //Check for null and compare run-time types.
-        if ((obj == null) || !this.GetType().Equals(obj.GetType()))
-        {
-            return false;
-        }
-        else
-        {
-            Planet p = (Planet)obj;
-            return (name == p.name);
-        }
-    }
-
-    public override int GetHashCode()
-    {
-        return name.GetHashCode();
     }
 }

@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class CreatePlanetAlien : CreatePlanet
 {
-    public CreatePlanetAlien(int resolution, float radius, Material planetMaterial, Material cloudMaterial)
-    {
-        this.resolution = resolution;
-        this.radius = radius;
-        this.planetMaterial = planetMaterial;
-        this.cloudMaterial = cloudMaterial;
-    }
-
     protected override void SetShapeSettings(ProceduralPlanet planet, float radius)
     {
         planet.shapeSettings.noiseLayers = new ShapeSettings.NoiseLayer[2];
@@ -40,6 +32,8 @@ public class CreatePlanetAlien : CreatePlanet
         planet.colorSettings.planetMaterial = new Material(planetMaterial);
         planet.colorSettings.planetMaterial.SetColor("_atmosphereColor", new Color(.15f, .6f, 0));
         planet.colorSettings.planetMaterial.SetFloat("_rimIntensity", 1f);
+        planet.colorSettings.planetMaterial.SetFloat("_atmosphereIntensity", .3f);
+
         // Clouds
         planet.colorSettings.cloudMaterial = new Material(cloudMaterial);
         planet.colorSettings.cloudMaterial.SetColor("_color", Color.blue);

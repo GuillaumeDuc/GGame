@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class CreatePlanetCold : CreatePlanet
 {
-    public CreatePlanetCold(int resolution, float radius, Material planetMaterial, Material cloudMaterial)
-    {
-        this.resolution = resolution;
-        this.radius = radius;
-        this.planetMaterial = planetMaterial;
-        this.cloudMaterial = cloudMaterial;
-    }
-
     protected override void SetShapeSettings(ProceduralPlanet planet, float radius)
     {
         planet.shapeSettings.noiseLayers = new ShapeSettings.NoiseLayer[2];

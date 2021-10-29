@@ -4,12 +4,7 @@ using UnityEngine;
 
 public abstract class CreatePlanet
 {
-    protected Material planetMaterial;
-    protected Material cloudMaterial;
-    protected int resolution;
-    protected float radius;
-
-    public virtual void SetPlanet(GameObject planetGO)
+    public virtual void SetPlanet(GameObject planetGO, Material planetMaterial, Material cloudMaterial, float radius = 1, int resolution = 100)
     {
         ProceduralPlanet planetScript = planetGO.AddComponent<ProceduralPlanet>();
         planetScript.resolution = resolution;
@@ -28,6 +23,9 @@ public abstract class CreatePlanet
         planet.colorSettings.cloudMaterial = new Material(cloudMaterial);
         planet.colorSettings.cloudMaterial.SetFloat("_distortionScale", (float)(8 / planet.shapeSettings.planetRadius));
         planet.colorSettings.cloudMaterial.SetFloat("_scale", (float)(8 / planet.shapeSettings.planetRadius));
+        planet.colorSettings.planetMaterial.SetFloat("_rimIntensity", 1.8f);
+        planet.colorSettings.planetMaterial.SetFloat("_atmosphereIntensity", .3f);
+
         Color[] oceanColors = new Color[2];
         oceanColors[0] = Color.black;
         oceanColors[1] = new Color(0, 0, 0.3f);
