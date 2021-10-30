@@ -14,16 +14,13 @@ public class ColorSettings
         public Biome[] biomes;
         public NoiseSettings noise;
         public float noiseOffset, noiseStrength;
-        [Range(0, 1)]
         public float blendAmount;
 
         public class Biome
         {
             public Gradient gradient;
             public Color tint;
-            [Range(0, 1)]
             public float startHeight;
-            [Range(0, 1)]
             public float tintPercent;
         }
     }

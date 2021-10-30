@@ -42,7 +42,7 @@ public static class PlanetFactory
     {
         GameObject planetGO = new GameObject(name);
         planetGO.transform.position = position;
-        createPlanet.SetPlanet(planetGO, planetMaterial, cloudMaterial, radius, 130);
+        createPlanet.SetPlanet(planetGO, planetMaterial, cloudMaterial, radius, 100);
         return planetGO;
     }
 }
