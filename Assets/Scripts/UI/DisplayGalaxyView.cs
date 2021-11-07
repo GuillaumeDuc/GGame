@@ -8,6 +8,10 @@ public class DisplayGalaxyView : DisplayUI
     public GameObject content;
     public GameObject planetOverviewPrefab;
     private List<Planet> listPlanet;
+    public GameObject attackView;
+
+    private Planet attackedPlanet, selectedPlanet;
+    private System.Action AttackAction;
 
     public override void Display(Planet selectedPlanet)
     {
@@ -36,7 +40,7 @@ public class DisplayGalaxyView : DisplayUI
                 if (!planet.Equals(selectedPlanet))
                 {
                     PlanetOverview planetOverview = content.GetComponentsInChildren<PlanetOverview>()[planetNB];
-                    SetPlanetOverview(selectedPlanet, planet, planetOverview.gameObject);
+                    SetPlanetOverview(selectedPlanet, planet, planetOverview.gameObject, true);
                     planetNB++;
                 }
             });
@@ -44,36 +48,46 @@ public class DisplayGalaxyView : DisplayUI
         listPlanet = Store.solarSystem.GetPlanets();
     }
 
-    void SetPlanetOverview(Planet selectedPlanet, Planet planet, GameObject planetOverviewGO)
+    void SetPlanetOverview(Planet selectedPlanet, Planet planet, GameObject planetOverviewGO, bool update = false)
     {
         PlanetOverview planetOverview = planetOverviewGO.GetComponent<PlanetOverview>();
         planetOverview.SetName(planet.name);
         planetOverview.SetSprite(null);
         planetOverview.SetDistance(Vector3.Distance(selectedPlanet.planetGO.transform.position, planet.planetGO.transform.position));
-        // Hide attack button if own planet
-        if (Store.player.planets.Contains(planet))
+        this.selectedPlanet = selectedPlanet;
+        this.attackedPlanet = planet;
+        AttackAction = () => Attack();
+        if (!update)
         {
-            planetOverview.attackButton.gameObject.SetActive(false);
+            // Hide attack button if own planet
+            if (Store.player.planets.Contains(planet))
+            {
+                planetOverview.attackButton.gameObject.SetActive(false);
+            }
+            else
+            {
+                planetOverview.SetAttackButton(AttackAction);
+            }
+            planetOverview.SetTransportButton(() => TransportAction(selectedPlanet, planet));
+            planetOverview.SetStayButton(() => StayAction(selectedPlanet, planet));
         }
-        else
-        {
-            planetOverview.SetAttackButton(AttackAction);
-        }
-        planetOverview.SetTransportButton(TransportAction);
-        planetOverview.SetStayButton(StayAction);
     }
 
-    void AttackAction()
+    void Attack()
+    {
+        // Hide whole scrollView
+        content.transform.parent.transform.parent.gameObject.SetActive(false);
+        attackView.SetActive(true);
+        AttackView av = attackView.GetComponent<AttackView>();
+        av.setAttackView(selectedPlanet, attackedPlanet);
+    }
+
+    void TransportAction(Planet selectedPlanet, Planet attackedPlanet)
     {
 
     }
 
-    void TransportAction()
-    {
-
-    }
-
-    void StayAction()
+    void StayAction(Planet selectedPlanet, Planet attackedPlanet)
     {
 
     }
