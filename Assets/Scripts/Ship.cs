@@ -12,17 +12,23 @@ public class Ship : Unit
     public Sprite sprite { get; set; }
     public ResourceCollection costToCreate { get; set; }
     public int overlandSpeed { get; set; }
+    public int speed { get; set; }
+    public Resource travelCost { get; set; }
 
-    public Ship(string name, ResourceCollection costToCreate)
+    public Ship(string name, int speed, Resource travelCost, ResourceCollection costToCreate)
     {
         this.name = name;
         this.costToCreate = costToCreate;
+        this.speed = speed;
+        this.travelCost = travelCost;
     }
 
-    public Ship(string name, Resource costToCreate)
+    public Ship(string name, int speed, Resource travelCost, Resource costToCreate)
     {
         this.name = name;
         this.costToCreate = new ResourceCollection() { costToCreate };
+        this.speed = speed;
+        this.travelCost = travelCost;
     }
     public string GetCost()
     {
@@ -32,6 +38,14 @@ public class Ship : Unit
             s += resource + "\n";
         }
         return s;
+    }
+
+    public Resource getTravelCost(float distance)
+    {
+        long costDistance = (long)distance / speed;
+        Resource costResource = new Resource(travelCost);
+        costResource.amount *= costDistance;
+        return costResource;
     }
 
     public override string ToString()

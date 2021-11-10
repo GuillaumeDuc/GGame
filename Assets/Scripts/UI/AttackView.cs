@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class AttackView : MonoBehaviour
 {
     public GameObject selectedPlanetGO, attackedPlanetGO;
-    public GameObject itemSelectionGO;
     public GameObject galaxyView;
+    public GameObject movementCostView;
     public Button closeView;
     Planet attackedPlanet, selectedPlanet;
 
@@ -22,7 +22,7 @@ public class AttackView : MonoBehaviour
         this.attackedPlanet = attackedPlanet;
         setPlanet(selectedPlanetGO, selectedPlanet);
         setPlanet(attackedPlanetGO, attackedPlanet);
-        SetSelection(selectedPlanet);
+        SetSelection(selectedPlanet, attackedPlanet);
     }
 
     void setPlanet(GameObject planetGO, Planet planet)
@@ -31,18 +31,15 @@ public class AttackView : MonoBehaviour
         planetGO.GetComponentInChildren<Image>().sprite = null;
     }
 
-    void SetSelection(Planet planet)
+    void SetSelection(Planet planet, Planet attacked)
     {
-        ItemSelection itemSelection = itemSelectionGO.GetComponent<ItemSelection>();
-        foreach (var item in planet.units)
-        {
-            itemSelection.setItem(item.Key.name, item.Value);
-        }
+        MovementCost movementCost = movementCostView.GetComponent<MovementCost>();
+        movementCost.SetSelection(planet, attacked);
     }
 
     void CloseView()
     {
-        itemSelectionGO.GetComponent<ItemSelection>().ResetContent();
+        movementCostView.GetComponent<MovementCost>().CloseView();
         this.gameObject.SetActive(false);
         galaxyView.SetActive(true);
     }

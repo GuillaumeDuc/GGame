@@ -3,11 +3,11 @@ using System.Collections.Generic;
 public static class UnitList
 {
     ///// Ships ///// 
-    static Ship quadrireme = new Ship("Quadrireme", new ResourceCollection() {
+    static Ship quadrireme = new Ship("Quadrireme", 1, new Resource(Resource.TypeResource.Gaz, 100), new ResourceCollection() {
         new Resource(Resource.TypeResource.Metal, 1000),
         new Resource(Resource.TypeResource.Gaz, 500),
     });
-    static Ship quinquereme = new Ship("Quinquereme", new ResourceCollection() {
+    static Ship quinquereme = new Ship("Quinquereme", 2, new Resource(Resource.TypeResource.Gaz, 100), new ResourceCollection() {
         new Resource(Resource.TypeResource.Metal, 750),
         new Resource(Resource.TypeResource.Gaz, 400)
     });

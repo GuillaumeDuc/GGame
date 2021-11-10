@@ -70,6 +70,11 @@ public class DisplayBuyUnit : DisplayUI
         {
             SetLabel(content, "Overland Speed", unit is Ship ? ((Ship)unit).overlandSpeed + "" : ((Troop)unit).overlandSpeed + "");
         }
+        if (unit is Ship)
+        {
+            SetLabel(content, "Speed", "" + (((Ship)unit).speed));
+            SetLabel(content, "Travel Cost", "" + (((Ship)unit).travelCost));
+        }
         SetLabel(content, "Cost", unit.GetCost());
     }
 
