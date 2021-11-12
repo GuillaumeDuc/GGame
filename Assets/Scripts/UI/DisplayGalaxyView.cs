@@ -10,9 +10,6 @@ public class DisplayGalaxyView : DisplayUI
     private List<Planet> listPlanet;
     public GameObject attackView;
 
-    private Planet attackedPlanet, selectedPlanet;
-    private System.Action AttackAction;
-
     public override void Display(Planet selectedPlanet)
     {
         // If no list or new list create new content else update content
@@ -54,9 +51,6 @@ public class DisplayGalaxyView : DisplayUI
         planetOverview.SetName(planet.name);
         planetOverview.SetSprite(null);
         planetOverview.SetDistance(Vector3.Distance(selectedPlanet.planetGO.transform.position, planet.planetGO.transform.position));
-        this.selectedPlanet = selectedPlanet;
-        this.attackedPlanet = planet;
-        AttackAction = () => Attack();
         if (!update)
         {
             // Hide attack button if own planet
@@ -66,6 +60,7 @@ public class DisplayGalaxyView : DisplayUI
             }
             else
             {
+                System.Action AttackAction = () => Attack(selectedPlanet, planet);
                 planetOverview.SetAttackButton(AttackAction);
             }
             planetOverview.SetTransportButton(() => TransportAction(selectedPlanet, planet));
@@ -73,7 +68,7 @@ public class DisplayGalaxyView : DisplayUI
         }
     }
 
-    void Attack()
+    void Attack(Planet selectedPlanet, Planet attackedPlanet)
     {
         // Hide whole scrollView
         content.transform.parent.transform.parent.gameObject.SetActive(false);
