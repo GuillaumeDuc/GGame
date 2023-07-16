@@ -5,21 +5,21 @@ using System.Linq;
 
 public class DisplayTab : MonoBehaviour
 {
-    public GameObject planetTab, buyTab;
-    public Button planetButton, buyButton;
-
-    public Dictionary<Button, GameObject> tabDict;
+    public List<GameObject> tabs;
+    public Dictionary<Button, GameObject> tabDict = new Dictionary<Button, GameObject>();
     void Start()
     {
+        // Get buttons
+        List<Button> buttons = this.gameObject.GetComponentsInChildren<Button>().ToList();
         // Tab listeners
-        planetButton.onClick.AddListener(() => { HandleChangeTab(planetButton); });
-        buyButton.onClick.AddListener(() => { HandleChangeTab(buyButton); });
-        tabDict = new Dictionary<Button, GameObject>() {
-            { planetButton, planetTab },
-            { buyButton, buyTab }
-        };
+        int i = 0;
+        buttons.ForEach(button =>
+        {
+            AddTab(button, tabs[i]);
+            i += 1;
+        });
         // Initialize tab
-        HandleChangeTab(planetButton);
+        HandleChangeTab(buttons[0]);
     }
     private void HandleChangeTab(Button clicked)
     {
@@ -41,5 +41,11 @@ public class DisplayTab : MonoBehaviour
                 item.Value.SetActive(false);
             }
         }
+    }
+
+    void AddTab(Button button, GameObject tab)
+    {
+        button.onClick.AddListener(() => { HandleChangeTab(button); });
+        tabDict.Add(button, tab);
     }
 }

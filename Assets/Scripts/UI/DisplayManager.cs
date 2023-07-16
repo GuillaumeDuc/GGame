@@ -9,6 +9,7 @@ public class DisplayManager : MonoBehaviour
     public DisplayUI resources;
     public GameObject planetTab;
     public GameObject buyTab;
+    public GameObject galaxyTab;
 
     private List<DisplayUI> displayedUI = new List<DisplayUI>();
 
@@ -20,6 +21,8 @@ public class DisplayManager : MonoBehaviour
         displayedUI = planetTab.GetComponentsInChildren<DisplayUI>().ToList();
         // Get display buy list
         displayedUI.AddRange(buyTab.GetComponentsInChildren<DisplayUI>().ToList());
+        // Get display galaxy list
+        displayedUI.AddRange(galaxyTab.GetComponentsInChildren<DisplayUI>().ToList());
     }
     public void UpdateUI()
     {

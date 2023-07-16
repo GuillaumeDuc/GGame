@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ProceduralPlanet : MonoBehaviour
 {
-    [Range(2, 256)]
     public int resolution = 10;
     public ShapeSettings shapeSettings = new ShapeSettings();
     public ColorSettings colorSettings = new ColorSettings();

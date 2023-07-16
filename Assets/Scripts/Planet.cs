@@ -78,4 +78,17 @@ public class Planet
             }
         }
     }
+
+    public Dictionary<Ship, int> GetShips()
+    {
+        Dictionary<Ship, int> ships = new Dictionary<Ship, int>();
+        foreach (var item in units)
+        {
+            if (item.Key is Ship)
+            {
+                ships.Add((Ship)item.Key, item.Value);
+            }
+        }
+        return ships;
+    }
 }
