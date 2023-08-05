@@ -29,6 +29,7 @@ public struct GeoOctasphere
     public int JobLength => 4 * Resolution + 1;
     public int Resolution { get; set; }
     public int Radius;
+    public float3 NoiseOffset;
 
     [NativeDisableContainerSafetyRestriction]
     NativeArray<Stream0> stream0;
@@ -245,14 +246,19 @@ public struct GeoOctasphere
         triangles = meshData.GetIndexData<ushort>().Reinterpret<TriangleUInt16>(2);
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void SetVertex(int index, Vertex vertex) => stream0[index] = new Stream0
+    public void SetVertex(int index, Vertex v)
     {
-        position = vertex.position * Radius * float3(1, 1, noise.cnoise(vertex.position)),
-        normal = vertex.normal,
-        tangent = vertex.tangent,
-        texCoord0 = vertex.texCoord0
-    };
+        // float3 n = noise.cnoise(v.position + NoiseOffset);
+        // v.position += n * v.normal;
+
+        stream0[index] = new Stream0
+        {
+            position = v.position * Radius,
+            normal = v.normal,
+            tangent = v.tangent,
+            texCoord0 = v.texCoord0
+        };
+    }
 
     public void SetTriangle(int index, int3 triangle) => triangles[index] = triangle;
 }

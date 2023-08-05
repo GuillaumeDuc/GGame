@@ -40,6 +40,8 @@ Material:
     - AtmosphereIntensity: 0.1
     - RimIntensity: 0.27
     - Smoothness: 0.1
+    - _QueueControl: 0
+    - _QueueOffset: 0
     - _atmosphereIntensity: 0.29
     - _rimIntensity: 1.89
     - _smoothness: 0

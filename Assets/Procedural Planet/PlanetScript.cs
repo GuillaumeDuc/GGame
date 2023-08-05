@@ -21,24 +21,27 @@ public class PlanetScript : MonoBehaviour
 
     [SerializeField, Range(1, 50)]
     int radius = 1;
-    public enum MaterialMode { DefaultMat, Ripple }
+    public enum MaterialMode { DefaultMat, TestMat, ColorationMat }
     [SerializeField]
     MaterialMode material;
     [SerializeField]
     Material[] materials;
     Mesh mesh;
-	[System.Flags]
-	public enum GizmoMode {
-		Nothing = 0, Vertices = 1, Normals = 0b10, Tangents = 0b100, Triangles = 0b1000
-	}
-	[SerializeField]
-	GizmoMode gizmos;
+    [System.Flags]
+    public enum GizmoMode
+    {
+        Nothing = 0, Vertices = 1, Normals = 0b10, Tangents = 0b100, Triangles = 0b1000
+    }
+    [SerializeField]
+    GizmoMode gizmos;
+    [SerializeField]
+    Vector3 noiseOffset;
     [System.NonSerialized]
-	Vector3[] vertices, normals;
-	[System.NonSerialized]
-	Vector4[] tangents;
-	[System.NonSerialized]
-	int[] triangles;
+    Vector3[] vertices, normals;
+    [System.NonSerialized]
+    Vector4[] tangents;
+    [System.NonSerialized]
+    int[] triangles;
 
     [BurstCompile(FloatPrecision.Standard, FloatMode.Fast, CompileSynchronously = true)]
     public struct MeshJob : IJobFor
@@ -79,7 +82,8 @@ public class PlanetScript : MonoBehaviour
         g = new GeoOctasphere()
         {
             Resolution = resolution,
-            Radius = radius
+            Radius = radius,
+            NoiseOffset = noiseOffset
         };
         g.Setup(meshData);
         new MeshJob
