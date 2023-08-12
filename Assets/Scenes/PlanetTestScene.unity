@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.19409323, g: 0.100058295, b: 0.11856624, a: 1}
+  m_IndirectSpecularColor: {r: 0.19528377, g: 0.097322635, b: 0.1191001, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -157,10 +157,11 @@ MonoBehaviour:
   meshOptimization: 0
   resolution: 1
   radius: 1
-  material: 1
+  material: 2
   materials:
   - {fileID: 2100000, guid: 9a207becb3ee5bc42a8acca6b25bd950, type: 2}
   - {fileID: 2100000, guid: ab264438725b41049be34efa04895b66, type: 2}
+  - {fileID: 2100000, guid: 9a207becb3ee5bc42a8acca6b25bd950, type: 2}
   gizmos: 0
   noiseOffset: {x: 1, y: 1, z: 1}
 --- !u!4 &47652676
