@@ -75,8 +75,8 @@ float snoise(float3 v)
     return 42.0 * dot(m, px);
 }
 
-void SimplexNoise_float (float3 position, float scale, float strength, float rounding, float3 offset, out float3 Out) {
-  float3 sn = snoise((position + offset) * scale) + strength;
+void SimplexNoise_float (float3 position, float scale, float strength, float rounding, out float3 Out) {
+  float3 sn = snoise(position * scale) + strength;
   sn.x = sn.x > rounding ? 1 : sn.x;
   sn.y = sn.y > rounding ? 1 : sn.y;
   sn.z = sn.z > rounding ? 1 : sn.z;
