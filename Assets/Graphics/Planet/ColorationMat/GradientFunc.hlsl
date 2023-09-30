@@ -33,6 +33,16 @@ float4 getDefaultDesert(float value) {
   ), 0, 1));
 }
 
+float4 getDefaultSnow(float value) {
+  return float3To4(clamp(grad(
+    value,
+    float3(0.998, 0.888, 0.998),
+    float3(-0.472, -0.192, -0.192),
+    float3(0.498, -0.502, 0.498),
+    float3(-0.922, -0.082, -0.032)
+  ), 0, 1));
+}
+
 float4 getDefaultType(float value) {
   return float3To4(clamp(grad(
     value,
@@ -50,8 +60,11 @@ float4 getGradient (float value, float type) {
       return getDefaultWater();
     case 1:
       return getDefaultForest(value);  
-    default:
+    case 2:
       return getDefaultDesert(value);
+    case 3:
+    default:
+      return getDefaultSnow(value);
   }
 }
 

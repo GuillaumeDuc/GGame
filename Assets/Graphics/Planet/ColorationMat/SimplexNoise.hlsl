@@ -75,11 +75,33 @@ float snoise(float3 v)
     return 42.0 * dot(m, px);
 }
 
-void SimplexNoise_float (float3 position, float scale, float strength, float rounding, out float3 Out) {
-  float3 sn = snoise(position * scale) + strength;
-  sn.x = sn.x > rounding ? 1 : sn.x;
-  sn.y = sn.y > rounding ? 1 : sn.y;
-  sn.z = sn.z > rounding ? 1 : sn.z;
-  Out = sn;
+float evaluate(float3 position, int numLayers, float strength, float baseRoughness, float roughness, float persistence, float minValue) {
+  float noiseValue = 0;
+  float frequency = baseRoughness;
+  float amplitude = 1;
+
+  for (int i = 0; i < numLayers; i++) {
+    float v = snoise(position * frequency);
+    noiseValue += (v + 1) * .5f * amplitude;
+    frequency *= roughness;
+    amplitude *= persistence;
+  }
+
+  noiseValue = noiseValue - minValue;
+  return noiseValue * strength;
+}
+
+void SimplexNoise_float(
+  float3 position,
+  int numLayers,
+  float strength,
+  float baseRoughness,
+  float roughness,
+  float persistence,
+  float minValue,
+  out float3 Out
+  ) {
+  float3 simp = evaluate(position, numLayers, strength, baseRoughness, roughness, persistence, minValue);
+  Out = simp;
 }
 #endif

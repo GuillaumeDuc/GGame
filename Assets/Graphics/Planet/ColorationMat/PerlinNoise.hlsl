@@ -72,7 +72,7 @@ float cnoise(float3 P)
   return 2.2 * n_xyz;
 }
 
-void PerlinNoise_float (float3 position, float scale, out float3 Out) {
+void PerlinNoise_float (float3 position, float3 scale, out float3 Out) {
   Out = cnoise(position * scale);
 }
 #endif

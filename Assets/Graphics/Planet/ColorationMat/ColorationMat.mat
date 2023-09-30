@@ -51,6 +51,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NormalFromTexture_aecbf33fc15f46e9a5be578bf8d67285_Texture_0:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -80,6 +84,7 @@ Material:
     - _AlphaClip: 0
     - _AtmosphereIntensity: 2.29
     - _AtmosphereStrength: 2.5
+    - _BaseRoughness: 0.92
     - _Blend: 0
     - _BumpScale: 1
     - _ClearCoatMask: 0
@@ -102,15 +107,20 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
+    - _MinValue: 0.61
     - _Minimum_Noise: 0
-    - _MountainScale: 3
+    - _MountainScale: 3.3
+    - _Normal: 0.6
     - _OcclusionStrength: 1
     - _Parallax: 0.005
+    - _Persistence: 0.15
+    - _Planet_Type: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RegionScale: 0.65
+    - _RegionScale: 0.6
     - _RimIntensity: 0
+    - _Roughness: 5
     - _Rounded: 1
     - _Scale: 1.45
     - _Smoothness: 0.5
@@ -118,6 +128,7 @@ Material:
     - _SpecularHighlights: 1
     - _Speed: 0.05
     - _SrcBlend: 1
+    - _Strength: 1.5
     - _StrengthLand: 0.75
     - _Strength_Noise: 0.61
     - _Surface: 0
@@ -133,7 +144,7 @@ Material:
     - _Ground: {r: 0.06978583, g: 1, b: 0, a: 0}
     - _Mountain: {r: 0.9206753, g: 0, b: 1, a: 0}
     - _NoiseColor: {r: 0, g: 0.3796072, b: 1, a: 0}
-    - _Offset_Noise: {r: 31.22, g: 16, b: 2.14, a: 0}
+    - _Offset_Noise: {r: 77.6, g: 21.1, b: 4.1, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _Water: {r: 0.1009256, g: 0.37482473, b: 0.7924528, a: 0}
   m_BuildTextureStacks: []

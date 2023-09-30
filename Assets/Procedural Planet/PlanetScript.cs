@@ -21,7 +21,7 @@ public class PlanetScript : MonoBehaviour
 
     [SerializeField, Range(1, 50)]
     int radius = 1;
-    public enum MaterialMode { DefaultMat, TestMat, ColorationMat }
+    public enum MaterialMode { DefaultPlanetMat, GasPlanetMat, SunPlanetMat }
     [SerializeField]
     MaterialMode material;
     [SerializeField]
