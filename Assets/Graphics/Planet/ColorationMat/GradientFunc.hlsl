@@ -9,8 +9,14 @@ float4 float3To4 (float3 c) {
   return float4(c.x, c.y, c.z, 0);
 }
 
-float4 getDefaultWater() {
-  return float4(0, .2876f, 1, 0);
+float4 getDefaultWater(float value) {
+  return float3To4(clamp(grad(
+    value,
+    float3(0.058, -0.112, 0.718),
+    float3(0, 0, 0.308),
+    float3(1, 1, 0.558),
+    float3(0, 0.333, 0.968)
+  ), 0, 1));
 }
 
 float4 getDefaultForest(float value) {
@@ -53,18 +59,42 @@ float4 getDefaultType(float value) {
   ), 0, 1));
 }
 
+float4 getDefaultHotGas(float value) {
+  return float3To4(clamp(grad(
+    value,
+    float3(0.608, 0.558 ,0.338),
+    float3(0.028, -0.082, -0.302),
+    float3(0.625, -1.392, 0.218),
+    float3(2.243, 1.198, 0.138)
+  ), 0, 1));
+}
+
+float4 getDefaultColdGas(float value) {
+  return float3To4(clamp(grad(
+    value,
+    float3(-1.052, -1.172, 1.558),
+    float3(2.088, 2.358, -1.192),
+    float3(-0.552, -0.552, -0.332),
+    float3(2.528, 2.528, 0.698)
+  ), 0, 1));
+}
+
 float4 getGradient (float value, float type) {
   switch(type)
   {
     case 0:
-      return getDefaultWater();
+      return getDefaultWater(value);
     case 1:
       return getDefaultForest(value);  
     case 2:
       return getDefaultDesert(value);
     case 3:
-    default:
       return getDefaultSnow(value);
+    case 4:
+      return getDefaultHotGas(value);
+    default:
+    case 5:
+      return getDefaultColdGas(value);
   }
 }
 

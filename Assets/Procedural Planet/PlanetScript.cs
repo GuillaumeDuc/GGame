@@ -21,27 +21,19 @@ public class PlanetScript : MonoBehaviour
 
     [SerializeField, Range(1, 50)]
     int radius = 1;
-    public enum MaterialMode { DefaultPlanetMat, GasPlanetMat, SunPlanetMat }
     [SerializeField]
-    MaterialMode material;
+    PlanetType material;
     [SerializeField]
     Material[] materials;
     Mesh mesh;
-    [System.Flags]
-    public enum GizmoMode
+
+    public void SetPlanet(PlanetType planetType, float radius, int resolution = 10)
     {
-        Nothing = 0, Vertices = 1, Normals = 0b10, Tangents = 0b100, Triangles = 0b1000
+        transform.localScale *= radius;
+        material = planetType;
+        this.resolution = resolution;
+        GetComponent<MeshRenderer>().material = new Material(materials[(int)material]);
     }
-    [SerializeField]
-    GizmoMode gizmos;
-    [SerializeField]
-    Vector3 noiseOffset;
-    [System.NonSerialized]
-    Vector3[] vertices, normals;
-    [System.NonSerialized]
-    Vector4[] tangents;
-    [System.NonSerialized]
-    int[] triangles;
 
     [BurstCompile(FloatPrecision.Standard, FloatMode.Fast, CompileSynchronously = true)]
     public struct MeshJob : IJobFor
@@ -62,17 +54,15 @@ public class PlanetScript : MonoBehaviour
             name = "Procedural Mesh"
         };
         GetComponent<MeshFilter>().mesh = mesh;
+        GenerateMesh();
     }
 
-    void OnValidate() => enabled = true;
-
-    void Update()
+    void OnValidate()
     {
-        GenerateMesh();
-        enabled = false;
-
         GetComponent<MeshRenderer>().material = materials[(int)material];
     }
+
+    void Update() { }
 
     void GenerateMesh()
     {
@@ -82,8 +72,7 @@ public class PlanetScript : MonoBehaviour
         g = new GeoOctasphere()
         {
             Resolution = resolution,
-            Radius = radius,
-            NoiseOffset = noiseOffset
+            Radius = radius
         };
         g.Setup(meshData);
         new MeshJob
@@ -104,83 +93,6 @@ public class PlanetScript : MonoBehaviour
         else if (meshOptimization != MeshOptimizationMode.Nothing)
         {
             mesh.Optimize();
-        }
-    }
-
-    void OnDrawGizmos()
-    {
-        if (gizmos == GizmoMode.Nothing || mesh == null)
-        {
-            return;
-        }
-
-        bool drawVertices = (gizmos & GizmoMode.Vertices) != 0;
-        bool drawNormals = (gizmos & GizmoMode.Normals) != 0;
-        bool drawTangents = (gizmos & GizmoMode.Tangents) != 0;
-        bool drawTriangles = (gizmos & GizmoMode.Triangles) != 0;
-
-        if (vertices == null)
-        {
-            vertices = mesh.vertices;
-        }
-        if (drawNormals && normals == null)
-        {
-            drawNormals = mesh.HasVertexAttribute(VertexAttribute.Normal);
-            if (drawNormals)
-            {
-                normals = mesh.normals;
-            }
-        }
-        if (drawTangents && tangents == null)
-        {
-            drawTangents = mesh.HasVertexAttribute(VertexAttribute.Tangent);
-            if (drawTangents)
-            {
-                tangents = mesh.tangents;
-            }
-        }
-        if (drawTriangles && triangles == null)
-        {
-            triangles = mesh.triangles;
-        }
-
-        Transform t = transform;
-        for (int i = 0; i < vertices.Length; i++)
-        {
-            Vector3 position = t.TransformPoint(vertices[i]);
-            if (drawVertices)
-            {
-                Gizmos.color = Color.cyan;
-                Gizmos.DrawSphere(position, 0.02f);
-            }
-            if (drawNormals)
-            {
-                Gizmos.color = Color.green;
-                Gizmos.DrawRay(position, t.TransformDirection(normals[i]) * 0.2f);
-            }
-            if (drawTangents)
-            {
-                Gizmos.color = Color.red;
-                Gizmos.DrawRay(position, t.TransformDirection(tangents[i]) * 0.2f);
-            }
-        }
-
-        if (drawTriangles)
-        {
-            float colorStep = 1f / (triangles.Length - 3);
-            for (int i = 0; i < triangles.Length; i += 3)
-            {
-                float c = i * colorStep;
-                Gizmos.color = new Color(c, 0f, c);
-                Gizmos.DrawSphere(
-                    t.TransformPoint((
-                        vertices[triangles[i]] +
-                        vertices[triangles[i + 1]] +
-                        vertices[triangles[i + 2]]
-                    ) * (1f / 3f)),
-                    0.02f
-                );
-            }
         }
     }
 }

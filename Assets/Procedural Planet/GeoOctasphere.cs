@@ -29,7 +29,6 @@ public struct GeoOctasphere
     public int JobLength => 4 * Resolution + 1;
     public int Resolution { get; set; }
     public int Radius;
-    public float3 NoiseOffset;
 
     [NativeDisableContainerSafetyRestriction]
     NativeArray<Stream0> stream0;
