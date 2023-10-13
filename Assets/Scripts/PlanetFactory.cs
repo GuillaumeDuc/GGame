@@ -12,40 +12,33 @@ public enum PlanetType
 public static class PlanetFactory
 {
     const string planetPathFile = "Planet/Planet";
-    static CreatePlanetAlien createPlanetAlien = new CreatePlanetAlien();
-    static CreatePlanetCold createPlanetCold = new CreatePlanetCold();
-    static CreatePlanetDesert createPlanetDesert = new CreatePlanetDesert();
-    static CreatePlanetTemperate createPlanetTemperate = new CreatePlanetTemperate();
 
     public static Planet CreatePlanet(string name, long size = 100, PlanetType planetType = PlanetType.Terrestrial, Vector3 position = new Vector3())
     {
         switch (planetType)
         {
             case PlanetType.Terrestrial:
-                GameObject planetGOEarth = CreatePlanetGO(planetType, name, position, (float)size / 100);
-                return new Planet(name, size, planetGOEarth);
-            case PlanetType.Sunlike:
-                GameObject planetGOCold = CreatePlanetGO(planetType, name, position, (float)size / 100);
-                return new Planet(name, size, planetGOCold);
-            case PlanetType.GasGiant:
-                GameObject planetGOAlien = CreatePlanetGO(planetType, name, position, (float)size / 100);
-                return new Planet(name, size, planetGOAlien);
             default:
-                GameObject planetGO = CreatePlanetGO(planetType, name, position, (float)size / 100);
-                return new Planet(name, size, planetGO);
+                GameObject terrestrialGO = CreatePlanetGO(planetType, new TerrestrialMatOptions(TerrestrialType.Ocean), name, position, (float)size / 100);
+                return new Planet(name, size, terrestrialGO);
+            case PlanetType.GasGiant:
+                GameObject gasGO = CreatePlanetGO(planetType, new GasMatOptions(GasType.Hot), name, position, (float)size / 100);
+                return new Planet(name, size, gasGO);
+            case PlanetType.Sunlike:
+                GameObject sunlikeGO = CreatePlanetGO(planetType, new TerrestrialMatOptions(TerrestrialType.Temperate), name, position, (float)size / 100);
+                return new Planet(name, size, sunlikeGO);
         }
     }
 
-    static GameObject CreatePlanetGO(PlanetType planetType, string name, Vector3 position, float radius)
+    static GameObject CreatePlanetGO(PlanetType planetType, IPlanetMatOptions options, string name, Vector3 position, float radius)
     {
         GameObject planetGO = Object.Instantiate(Resources.Load<GameObject>(planetPathFile));
         planetGO.name = name;
         planetGO.transform.position = position;
 
         PlanetScript ps = planetGO.GetComponent<PlanetScript>();
-        ps.SetPlanet(planetType, radius);
+        ps.SetPlanet(planetType, options, radius);
 
-        // createPlanet.SetPlanet(planetGO, planetMaterial, radius, 100);
         return planetGO;
     }
 }

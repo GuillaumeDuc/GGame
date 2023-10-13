@@ -53,6 +53,9 @@
         },
         {
             "m_Id": "68e4299a4b4642ca979fd01bded26540"
+        },
+        {
+            "m_Id": "f654dd21fd114ddab5aebd009f92ec82"
         }
     ],
     "m_Keywords": [],
@@ -179,6 +182,9 @@
         },
         {
             "m_Id": "bf5a4ef0d3ef4e2c9c8da550e49d024d"
+        },
+        {
+            "m_Id": "83a40cd72d264fb1a082db613cb33715"
         }
     ],
     "m_GroupDatas": [],
@@ -378,6 +384,20 @@
                     "m_Id": "1153e78a21d943edb05b9a8b2749887d"
                 },
                 "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "83a40cd72d264fb1a082db613cb33715"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "8657c58d37e044a3b05c5935986c94cc"
+                },
+                "m_SlotId": 20
             }
         },
         {
@@ -740,7 +760,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "0530bb3736374bb8948bcfdb0dec4495",
     "m_Id": 0,
-    "m_DisplayName": "Cloud Strength",
+    "m_DisplayName": "CloudStrength",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -978,6 +998,29 @@
     "m_FunctionName": "CloudFunc",
     "m_FunctionSource": "cde98cefbe66f19448b7c1c72df1f9a2",
     "m_FunctionBody": "Enter function body here..."
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
+    "m_ObjectId": "1308c775f3cd444791f423ec4c5f3270",
+    "m_Id": 0,
+    "m_DisplayName": "RGBOffset",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": []
 }
 
 {
@@ -1863,7 +1906,7 @@
     "m_FloatType": 1,
     "m_RangeValues": {
         "x": 0.0,
-        "y": 3.0
+        "y": 4.0
     }
 }
 
@@ -2171,6 +2214,41 @@
 }
 
 {
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "83a40cd72d264fb1a082db613cb33715",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -1587.0,
+            "y": -25.000032424926759,
+            "width": 132.0,
+            "height": 34.000038146972659
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "1308c775f3cd444791f423ec4c5f3270"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "f654dd21fd114ddab5aebd009f92ec82"
+    }
+}
+
+{
     "m_SGVersion": 1,
     "m_Type": "UnityEditor.ShaderGraph.CustomFunctionNode",
     "m_ObjectId": "8657c58d37e044a3b05c5935986c94cc",
@@ -2215,6 +2293,9 @@
         },
         {
             "m_Id": "92668ecacc644057be159ce5cc2ea5af"
+        },
+        {
+            "m_Id": "bd7c0847f2594157ae3fe3bae727ad7a"
         },
         {
             "m_Id": "d69a8ade750c485da73fc4083d3a7066"
@@ -3107,6 +3188,29 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
+    "m_ObjectId": "bd7c0847f2594157ae3fe3bae727ad7a",
+    "m_Id": 20,
+    "m_DisplayName": "RGBOffset",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "RGBOffset",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 1.25,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.FloorNode",
     "m_ObjectId": "bf5a4ef0d3ef4e2c9c8da550e49d024d",
     "m_Group": {
@@ -3878,10 +3982,10 @@
     "m_Guid": {
         "m_GuidSerialized": "e5e5cb8b-5f5b-4cad-b788-09028129047b"
     },
-    "m_Name": "Cloud Strength",
+    "m_Name": "CloudStrength",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Cloud Strength",
-    "m_DefaultReferenceName": "_Cloud_Strength",
+    "m_RefNameGeneratedByDisplayName": "CloudStrength",
+    "m_DefaultReferenceName": "_CloudStrength",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -4017,6 +4121,9 @@
     "m_ChildObjectList": [
         {
             "m_Id": "68e4299a4b4642ca979fd01bded26540"
+        },
+        {
+            "m_Id": "f654dd21fd114ddab5aebd009f92ec82"
         },
         {
             "m_Id": "2aac2a1daf624ab7b5b946d4fcebfb2f"
@@ -4192,6 +4299,33 @@
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector3ShaderProperty",
+    "m_ObjectId": "f654dd21fd114ddab5aebd009f92ec82",
+    "m_Guid": {
+        "m_GuidSerialized": "fd14fec5-85e5-491d-9b12-2a6ccfadf948"
+    },
+    "m_Name": "RGBOffset",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "RGBOffset",
+    "m_DefaultReferenceName": "_RGBOffset",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    }
 }
 
 {

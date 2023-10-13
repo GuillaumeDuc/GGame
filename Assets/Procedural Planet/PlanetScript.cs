@@ -27,12 +27,13 @@ public class PlanetScript : MonoBehaviour
     Material[] materials;
     Mesh mesh;
 
-    public void SetPlanet(PlanetType planetType, float radius, int resolution = 10)
+    public void SetPlanet(PlanetType planetType, IPlanetMatOptions planetOptions, float radius, int resolution = 10)
     {
         transform.localScale *= radius;
         material = planetType;
         this.resolution = resolution;
-        GetComponent<MeshRenderer>().material = new Material(materials[(int)material]);
+        Material planetMat = planetOptions.GetMat(materials[(int)material]);
+        GetComponent<MeshRenderer>().material = planetMat;
     }
 
     [BurstCompile(FloatPrecision.Standard, FloatMode.Fast, CompileSynchronously = true)]

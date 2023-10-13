@@ -16,7 +16,6 @@ public abstract class CreatePlanet
 
     protected abstract void SetShapeSettings(ProceduralPlanet proceduralPlanet, float radius);
 
-    /// <summary>method <c>SetColorSettings</c> set default ocean (blue) and call SetBiomes.</summary>
     protected virtual void SetColorSettings(ProceduralPlanet planet, Material planetMaterial, Material cloudMaterial)
     {
         planet.colorSettings.planetMaterial = new Material(planetMaterial);

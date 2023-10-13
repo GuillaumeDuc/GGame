@@ -33,20 +33,31 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AbsScale: 9.53
+    - _AbsStrength: 3.69
     - _AtmoshpereStrength: 1.5
+    - _CircleScale: 6.06
+    - _CircleStrength: 1.52
     - _NoiseSlowness: 30
     - _NoiseSpeed: 12.89
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Roughness: 9.53
-    - _Type: 4.36
+    - _Roughness: 3
+    - _Smoothness: 0.5
+    - _SnoiseStrength: 2.18
+    - _Type: 0
     m_Colors:
     - _AtmosphereColor: {r: 0.19699526, g: 0, b: 1, a: 0}
-    - _Distortion: {r: 0.1, g: 5, b: 0.1, a: 0}
+    - _Distortion: {r: 0.05, g: 7, b: 0.05, a: 0}
     - _DistortionSecondary: {r: 1, g: 2.74, b: 1, a: 0}
     - _OffsetNoise: {r: 1, g: 0, b: 0, a: 0}
     - _PlanetColor: {r: 0, g: 0.15586233, b: 1, a: 0}
     - _PlanetSecondaryColor: {r: 1, g: 1, b: 1, a: 0}
+    - _PositionOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _RGBAmp: {r: 0, g: 0, b: 0, a: 0}
+    - _RGBFreq: {r: 0, g: 0, b: 0, a: 0}
+    - _RGBOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _RGBPhase: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &4153684299976743219
 MonoBehaviour:
