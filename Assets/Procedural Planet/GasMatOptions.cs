@@ -21,7 +21,7 @@ public class GasMatOptions : IPlanetMatOptions
                 return;
         }
     }
-
+ 
     public virtual void SetDefault(int planetType)
     {
         gasType = (GasType)GasType.GetValues(gasType.GetType()).GetValue(planetType);
