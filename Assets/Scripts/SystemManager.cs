@@ -12,10 +12,11 @@ public class SystemManager : MonoBehaviour
     void Start()
     {
         // Create Planets
-        Planet p1 = PlanetFactory.CreatePlanet("First Planet", 300, PlanetType.Terrestrial, new Vector3(20, 0, 0));
-        Planet p2 = PlanetFactory.CreatePlanet("Second Planet", 100, PlanetType.GasGiant, new Vector3(30, 0, 0));
-        Planet p3 = PlanetFactory.CreatePlanet("Planet Enemy 1", 50, PlanetType.Terrestrial, new Vector3(40, 0, 0));
-        Planet p4 = PlanetFactory.CreatePlanet("Planet Enemy 2", 500, PlanetType.Sunlike, new Vector3(50, 0, 0));
+        Planet sun = PlanetFactory.CreatePlanet("Sun", 600, PlanetType.Sunlike, (int)SunType.Yellow);
+        Planet p1 = PlanetFactory.CreatePlanet("First Planet", 300, PlanetType.Terrestrial, (int)TerrestrialType.Temperate, new Vector3(20, 0, 0));
+        Planet p2 = PlanetFactory.CreatePlanet("Second Planet", 500, PlanetType.GasGiant, (int)GasType.Hot, new Vector3(30, 0, 0));
+        Planet p3 = PlanetFactory.CreatePlanet("Planet Enemy 1", 50, PlanetType.Terrestrial, (int)TerrestrialType.Ocean, new Vector3(40, 0, 0));
+        Planet p4 = PlanetFactory.CreatePlanet("Planet Enemy 2", 60, PlanetType.Sunlike, (int)TerrestrialType.Cold, new Vector3(50, 0, 0));
 
         // Create Players
         Player player = new Player("Player 1", new List<Planet>() { p1, p2 });

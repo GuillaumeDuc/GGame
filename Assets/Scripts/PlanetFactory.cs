@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,26 +14,42 @@ public static class PlanetFactory
 {
     const string planetPathFile = "Planet/Planet";
 
-    public static Planet CreatePlanet(string name, long size = 100, PlanetType planetType = PlanetType.Terrestrial, Vector3 position = new Vector3())
+    public static Planet CreatePlanet
+    (
+        string name,
+        long size = 100,
+        PlanetType planetType = PlanetType.Terrestrial,
+        int options = 0, 
+        Vector3 position = new Vector3()
+    )
     {
         switch (planetType)
         {
             case PlanetType.Terrestrial:
             default:
-                GameObject terrestrialGO = CreatePlanetGO(planetType, new TerrestrialMatOptions(TerrestrialType.Ocean), name, position, (float)size / 100);
+                TerrestrialMatOptions tmo = new((TerrestrialType)options);
+                GameObject terrestrialGO = CreatePlanetGO(planetType, tmo, name, position, (float)size / 100);
+                
                 return new Planet(name, size, terrestrialGO);
             case PlanetType.GasGiant:
-                GameObject gasGO = CreatePlanetGO(planetType, new GasMatOptions(GasType.Hot), name, position, (float)size / 100);
+                GasMatOptions gmo = new((GasType)options);
+                GameObject gasGO = CreatePlanetGO(planetType, gmo, name, position, (float)size / 100);
+                
                 return new Planet(name, size, gasGO);
             case PlanetType.Sunlike:
-                GameObject sunlikeGO = CreatePlanetGO(planetType, new TerrestrialMatOptions(TerrestrialType.Temperate), name, position, (float)size / 100);
+                SunMatOptions smo = new((SunType)options);
+                GameObject sunlikeGO = CreatePlanetGO(planetType, smo, name, position, (float)size / 100);
+                // Light
+                Color light = smo.type == SunType.Yellow ? Color.white : smo.baseColor;
+                sunlikeGO.GetComponent<PlanetScript>().SetLight(size * 2, size, light);
+                
                 return new Planet(name, size, sunlikeGO);
         }
     }
 
     static GameObject CreatePlanetGO(PlanetType planetType, IPlanetMatOptions options, string name, Vector3 position, float radius)
     {
-        GameObject planetGO = Object.Instantiate(Resources.Load<GameObject>(planetPathFile));
+        GameObject planetGO = UnityEngine.Object.Instantiate(Resources.Load<GameObject>(planetPathFile));
         planetGO.name = name;
         planetGO.transform.position = position;
 

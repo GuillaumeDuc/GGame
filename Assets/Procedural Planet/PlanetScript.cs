@@ -25,6 +25,8 @@ public class PlanetScript : MonoBehaviour
     PlanetType material;
     [SerializeField]
     Material[] materials;
+    [SerializeField]
+    Light planetLight;
     Mesh mesh;
 
     public void SetPlanet(PlanetType planetType, IPlanetMatOptions planetOptions, float radius, int resolution = 10)
@@ -34,6 +36,14 @@ public class PlanetScript : MonoBehaviour
         this.resolution = resolution;
         Material planetMat = planetOptions.GetMat(materials[(int)material]);
         GetComponent<MeshRenderer>().material = planetMat;
+    }
+
+    public void SetLight(long intensity, long range, Color color)
+    {
+        planetLight.gameObject.SetActive(true);
+        planetLight.color = color;
+        planetLight.intensity = intensity;
+        planetLight.range = range;
     }
 
     [BurstCompile(FloatPrecision.Standard, FloatMode.Fast, CompileSynchronously = true)]
