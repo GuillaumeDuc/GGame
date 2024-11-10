@@ -15,8 +15,8 @@ public class SystemManager : MonoBehaviour
         Planet sun = PlanetFactory.CreatePlanet("Sun", 600, PlanetType.Sunlike, (int)SunType.Yellow);
         Planet p1 = PlanetFactory.CreatePlanet("First Planet", 300, PlanetType.Terrestrial, (int)TerrestrialType.Temperate, new Vector3(20, 0, 0));
         Planet p2 = PlanetFactory.CreatePlanet("Second Planet", 500, PlanetType.GasGiant, (int)GasType.Hot, new Vector3(30, 0, 0));
-        Planet p3 = PlanetFactory.CreatePlanet("Planet Enemy 1", 50, PlanetType.Terrestrial, (int)TerrestrialType.Ocean, new Vector3(40, 0, 0));
-        Planet p4 = PlanetFactory.CreatePlanet("Planet Enemy 2", 60, PlanetType.Sunlike, (int)TerrestrialType.Cold, new Vector3(50, 0, 0));
+        Planet p3 = PlanetFactory.CreatePlanet("Planet Enemy 1", 50, PlanetType.GasGiant, (int)GasType.Cold, new Vector3(40, 0, 0));
+        Planet p4 = PlanetFactory.CreatePlanet("Planet Enemy 2", 60, PlanetType.Terrestrial, (int)TerrestrialType.Cold, new Vector3(50, 0, 0));
 
         // Create Players
         Player player = new Player("Player 1", new List<Planet>() { p1, p2 });
@@ -25,14 +25,14 @@ public class SystemManager : MonoBehaviour
 
         // Create solar system
         SolarSystem solarSystem = new SolarSystem();
-        solarSystem.AddPlanet(new List<Planet>() { p1, p2, p3, p4 });
+        solarSystem.AddPlanet(new List<Planet>() { sun, p1, p2, p3, p4 });
 
         // Store info
         Store.SetStore(player, new List<Player>() { enemy1, enemy2 }, solarSystem, worldCamera);
 
         // UI
         Store.UpdateUI();
-        InvokeRepeating("ProduceResources", 1, 1);
+        InvokeRepeating(nameof(ProduceResources), 1, 1);
     }
 
     void ProduceResources()

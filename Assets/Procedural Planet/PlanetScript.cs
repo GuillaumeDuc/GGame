@@ -28,12 +28,18 @@ public class PlanetScript : MonoBehaviour
     [SerializeField]
     Light planetLight;
     Mesh mesh;
+    [SerializeField]
+    bool rotate;
+    [SerializeField]
+    Vector3 rotation;
+
 
     public void SetPlanet(PlanetType planetType, IPlanetMatOptions planetOptions, float radius, int resolution = 10)
     {
         transform.localScale *= radius;
         material = planetType;
         this.resolution = resolution;
+        this.rotation = new Vector3(0, .1f);
         Material planetMat = planetOptions.GetMat(materials[(int)material]);
         GetComponent<MeshRenderer>().material = planetMat;
     }
@@ -71,9 +77,19 @@ public class PlanetScript : MonoBehaviour
     void OnValidate()
     {
         GetComponent<MeshRenderer>().material = materials[(int)material];
+        if (mesh != null)
+        {
+            GenerateMesh();
+        }
     }
 
-    void Update() { }
+    void FixedUpdate() 
+    {
+        if (rotate)
+        {
+            gameObject.transform.Rotate(rotation, Space.Self);
+        }
+    }
 
     void GenerateMesh()
     {

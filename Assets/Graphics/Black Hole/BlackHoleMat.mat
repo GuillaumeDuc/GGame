@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6834016185860044062
+--- !u!114 &-2931829666712432390
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SunMat
-  m_Shader: {fileID: -6465566751694194690, guid: e22d86f2e3b73af4f8356bbb6d025186, type: 3}
+  m_Name: BlackHoleMat
+  m_Shader: {fileID: -6465566751694194690, guid: 480a392af13e295408e5d573ff7b3501, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -29,11 +29,11 @@ Material:
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2050
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
-  m_LockedProperties: 
+  m_LockedProperties: _Alpha
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -51,10 +51,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Alpha: 1
+    - _Distortion: 0.59
+    - _Edge: 0.26
+    - _Edge2: 2.68
+    - _Power: 0.5
     - _QueueControl: 0
-    - _QueueOffset: 0
+    - _QueueOffset: 50
     m_Colors:
-    - Base_Color: {r: 38.937145, g: 8.979456, b: 0, a: 0}
-    - _Color: {r: 59.017693, g: 12.050733, b: 5.561877, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Emission: {r: 0, g: 0, b: 0, a: 0}
+    - _Vector3: {r: 0, g: 0, b: 2.88, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
