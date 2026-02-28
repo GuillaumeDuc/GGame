@@ -19,7 +19,7 @@ public static class PlanetFactory
         string name,
         long size = 100,
         PlanetType planetType = PlanetType.Terrestrial,
-        int options = 0, 
+        int options = 0,
         Vector3 position = new Vector3()
     )
     {
@@ -29,20 +29,20 @@ public static class PlanetFactory
             default:
                 TerrestrialMatOptions tmo = new((TerrestrialType)options);
                 GameObject terrestrialGO = CreatePlanetGO(planetType, tmo, name, position, (float)size / 100);
-                
+
                 return new Planet(name, size, terrestrialGO);
             case PlanetType.GasGiant:
                 GasMatOptions gmo = new((GasType)options);
                 GameObject gasGO = CreatePlanetGO(planetType, gmo, name, position, (float)size / 100);
-                
+
                 return new Planet(name, size, gasGO);
             case PlanetType.Sunlike:
                 SunMatOptions smo = new((SunType)options);
                 GameObject sunlikeGO = CreatePlanetGO(planetType, smo, name, position, (float)size / 100);
                 // Light
-                Color light = smo.type == SunType.Yellow ? Color.white : smo.baseColor;
-                sunlikeGO.GetComponent<PlanetScript>().SetLight(size * 2, size, light);
-                
+                Color light = smo.lightColor;
+                sunlikeGO.GetComponent<PlanetScript>().SetLight(size * 10, size, light);
+
                 return new Planet(name, size, sunlikeGO);
         }
     }

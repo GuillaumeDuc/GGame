@@ -12,7 +12,7 @@ public class SystemManager : MonoBehaviour
     void Start()
     {
         // Create Planets
-        Planet sun = PlanetFactory.CreatePlanet("Sun", 600, PlanetType.Sunlike, (int)SunType.Yellow);
+        Planet sun = PlanetFactory.CreatePlanet("Sun", 600, PlanetType.Sunlike, (int)SunType.White, new Vector3(-35, 0, 0));
         Planet p1 = PlanetFactory.CreatePlanet("First Planet", 300, PlanetType.Terrestrial, (int)TerrestrialType.Temperate, new Vector3(20, 0, 0));
         Planet p2 = PlanetFactory.CreatePlanet("Second Planet", 500, PlanetType.GasGiant, (int)GasType.Hot, new Vector3(30, 0, 0));
         Planet p3 = PlanetFactory.CreatePlanet("Planet Enemy 1", 50, PlanetType.GasGiant, (int)GasType.Cold, new Vector3(40, 0, 0));

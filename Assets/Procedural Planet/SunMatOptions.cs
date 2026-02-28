@@ -5,7 +5,7 @@ using UnityEngine;
 public enum SunType { Yellow, White }
 public class SunMatOptions : IPlanetMatOptions
 {
-    public Color baseColor, rimColor;
+    public Color baseColor, rimColor, lightColor;
     public SunType type;
 
     public SunMatOptions(SunType type)
@@ -26,8 +26,9 @@ public class SunMatOptions : IPlanetMatOptions
     void SetWhite()
     {
         int p = 10;
-        baseColor = new Color(.01f, .5f, .7f) * (p * p);
-        rimColor = new Color(.1f, .65f, .85f) * (p * p * p);
+        baseColor = new Color(.5f, .5f, .7f) * (p * p);
+        rimColor = new Color(.4f, .65f, .85f) * (p * p * p);
+        lightColor = Color.white;
     }
 
     public virtual void SetDefault(int type)
@@ -35,6 +36,7 @@ public class SunMatOptions : IPlanetMatOptions
         const int p = 10;
         baseColor = new Color(.44f, .01f, 0) * (p * (p / 2));
         rimColor = new Color(.70f, .12f, .05f) * (p * p);
+        lightColor = Color.white;
     }
 
     public virtual Material GetMat(Material sunMat)
