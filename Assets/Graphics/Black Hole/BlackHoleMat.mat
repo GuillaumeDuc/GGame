@@ -27,9 +27,9 @@ Material:
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 2
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2050
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 1
+  m_CustomRenderQueue: 3050
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
@@ -52,9 +52,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _Alpha: 1
-    - _Distortion: 0.59
-    - _Edge: 0.26
-    - _Edge2: 2.68
+    - _Distortion: 0.24
+    - _Edge: 1.03
+    - _Edge2: 0.26
     - _Power: 0.5
     - _QueueControl: 0
     - _QueueOffset: 50

@@ -240,154 +240,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 2
---- !u!1 &811765847
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 811765850}
-  - component: {fileID: 811765849}
-  - component: {fileID: 811765848}
-  m_Layer: 0
-  m_Name: Boids
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &811765848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 811765847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ce17282cedf833438899c2394697f81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boidsComputeShader: {fileID: 7200000, guid: 3ce65665f60de644591adda29e28adb6, type: 3}
-  boidsCount: 1000
-  cohesionRadius: 2
-  alignmentRadius: 0.4
-  separationRadius: 0.55
-  cohesionWeight: 0.6
-  alignmentWeight: 0.5
-  separationWeight: 0.2
-  boidMaximumSpeed: 2
-  boidMaxSteeringForce: 0.2
-  simulationCenter: {x: 0, y: 0, z: 0}
-  simulationDimensions: {x: 10, y: 10, z: 10}
-  simulationBoundsAvoidWeight: 10
---- !u!114 &811765849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 811765847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6b429bce74abcb4f884f66f8570b46d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  csBoids: {fileID: 811765848}
-  instanceMesh: {fileID: -2432090755550338912, guid: 087308ac0acc3ee4894d62b6370592ff, type: 3}
-  instanceRenderMaterial: {fileID: 2100000, guid: f9ee07c8a39760a4a974f3df7b3748e2, type: 2}
-  boidScale: {x: 0.05, y: 0.05, z: 0.05}
---- !u!4 &811765850
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 811765847}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &959532351
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 959532354}
-  - component: {fileID: 959532353}
-  - component: {fileID: 959532352}
-  m_Layer: 0
-  m_Name: Boids (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &959532352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 959532351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ce17282cedf833438899c2394697f81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boidsComputeShader: {fileID: 7200000, guid: 3ce65665f60de644591adda29e28adb6, type: 3}
-  boidsCount: 300
-  cohesionRadius: 1
-  alignmentRadius: 1
-  separationRadius: 0.8
-  cohesionWeight: 0.85
-  alignmentWeight: 0.5
-  separationWeight: 2
-  boidMaximumSpeed: 1
-  boidMaxSteeringForce: 0.1
-  simulationCenter: {x: 0, y: 0, z: 0}
-  simulationDimensions: {x: 20, y: 20, z: 20}
-  simulationBoundsAvoidWeight: 10
---- !u!114 &959532353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 959532351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6b429bce74abcb4f884f66f8570b46d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  csBoids: {fileID: 959532352}
-  instanceMesh: {fileID: -2432090755550338912, guid: 9d1a6ab2564b23147b84316d8b9c5bc6, type: 3}
-  instanceRenderMaterial: {fileID: 2100000, guid: 41c8112033e82924b8065b6d7be556d3, type: 2}
-  boidScale: {x: 0.3, y: 0.3, z: 0.3}
---- !u!4 &959532354
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 959532351}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -752,6 +604,87 @@ Transform:
   - {fileID: 810529489}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2086074944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2086074946}
+  - component: {fileID: 2086074945}
+  m_Layer: 0
+  m_Name: BoidManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2086074945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086074944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88e3c90a5dd7f5c4aa5674e7c21b4279, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boidSystems:
+  - boidSystem:
+      boidsComputeShader: {fileID: 7200000, guid: 3ce65665f60de644591adda29e28adb6, type: 3}
+      boidsCount: 1000
+      cohesionRadius: 1
+      alignmentRadius: 1
+      separationRadius: 0.5
+      cohesionWeight: 0.5
+      alignmentWeight: 0.5
+      separationWeight: 2
+      boidMaximumSpeed: 10
+      boidMaxSteeringForce: 1
+      simulationCenter: {x: 0, y: 0, z: 0}
+      simulationRadius: 50
+      simulationBoundsAvoidWeight: 10
+    boidsRenderer:
+      instanceMesh: {fileID: -2432090755550338912, guid: 087308ac0acc3ee4894d62b6370592ff, type: 3}
+      instanceRenderMaterial: {fileID: 2100000, guid: f9ee07c8a39760a4a974f3df7b3748e2, type: 2}
+      boidScale: {x: 0.1, y: 0.1, z: 0.1}
+  - boidSystem:
+      boidsComputeShader: {fileID: 7200000, guid: 3ce65665f60de644591adda29e28adb6, type: 3}
+      boidsCount: 100
+      cohesionRadius: 1
+      alignmentRadius: 1
+      separationRadius: 0.5
+      cohesionWeight: 0.5
+      alignmentWeight: 0.5
+      separationWeight: 2
+      boidMaximumSpeed: 10
+      boidMaxSteeringForce: 1
+      simulationCenter: {x: 0, y: 0, z: 0}
+      simulationRadius: 50
+      simulationBoundsAvoidWeight: 10
+    boidsRenderer:
+      instanceMesh: {fileID: -2432090755550338912, guid: 9d1a6ab2564b23147b84316d8b9c5bc6, type: 3}
+      instanceRenderMaterial: {fileID: 2100000, guid: 41c8112033e82924b8065b6d7be556d3, type: 2}
+      boidScale: {x: 1, y: 1, z: 1}
+--- !u!4 &2086074946
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086074944}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.977883, y: 0.46945846, z: -15.135931}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -760,5 +693,4 @@ SceneRoots:
   - {fileID: 1227429625}
   - {fileID: 1795646686}
   - {fileID: 1177391430}
-  - {fileID: 811765850}
-  - {fileID: 959532354}
+  - {fileID: 2086074946}

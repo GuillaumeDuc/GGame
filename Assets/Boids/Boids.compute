@@ -33,7 +33,7 @@ float _AlignmentWeight; // Alignment force appliance weight
 float _CohesionWeight;  // Cohesion force appliance weight
 
 float4 _SimulationCenter;
-float4 _SimulationDimensions;
+float _SimulationRadius;
 float _SimulationBoundsAvoidWeight;
 
 groupshared BoidData boid_data[THREAD_GROUP_SIZE];
@@ -62,17 +62,20 @@ float3 limit(float3 vec, float max)
 
 float3 CheckSimulationBounds(float3 position)
 {
-   float3 wc = _SimulationCenter.xyz;
-   float3 ws = _SimulationDimensions.xyz;
+   float3 centerPos = _SimulationCenter.xyz;
+   float3 diff = position - centerPos;
+   float distance = sqrt(dot(diff, diff));
 
-   float3 acc = float3(0, 0, 0);
-
-   acc.x = (position.x < wc.x - ws.x * 0.5) ? 1.0 : ((position.x > wc.x + ws.x * 0.5) ? -1.0 : 0.0);
-   acc.y = (position.y < wc.y - ws.y * 0.5) ? 1.0 : ((position.y > wc.y + ws.y * 0.5) ? -1.0 : 0.0);
-   acc.z = (position.z < wc.z - ws.z * 0.5) ? 1.0 : ((position.z > wc.z + ws.z * 0.5) ? -1.0 : 0.0);
-
-
-   return acc;
+   if (distance > _SimulationRadius)
+   {
+      // Return normalized direction pointing back towards center
+      float3 direction = safeNormalize(-diff);
+      // Scale force based on how far outside bounds (optional, can be removed for constant force)
+      float overshoot = distance - _SimulationRadius;
+      return direction * overshoot;
+   }
+   
+   return float3(0, 0, 0);
 }
 
 [numthreads(THREAD_GROUP_SIZE, 1, 1)]

@@ -1,35 +1,39 @@
 using UnityEngine;
 
-public class BoidsRenderer : MonoBehaviour
+[System.Serializable]
+public class BoidsRenderer
 {
-    public BoidSystem csBoids;
-    [SerializeField] private Mesh instanceMesh;
-    [SerializeField] private Material instanceRenderMaterial;
-    [SerializeField] private Vector3 boidScale = new Vector3(0.2f, 0.3f, 0.6f);
+    public Mesh instanceMesh;
+    public Material instanceRenderMaterial;
+    public Vector3 boidScale = new(0.2f, 0.2f, 0.2f);
 
     private int _boidsCount;
     private BoidData[] _boidData;
     private Matrix4x4[] _matrices;
+    private bool _isInitialized = false;
 
-    private void Start()
+    public void Initialize(int boidsCount)
     {
-        _boidsCount = csBoids.GetBoidsCount();
+        if (_isInitialized) return;
+
+        _boidsCount = boidsCount;
         _boidData = new BoidData[_boidsCount];
         _matrices = new Matrix4x4[_boidsCount];
+        _isInitialized = true;
     }
 
-    private void Update()
+    public void Render(BoidSystem boidSystem)
     {
-        if (instanceMesh == null || instanceRenderMaterial == null || csBoids == null)
+        if (!_isInitialized || instanceMesh == null || instanceRenderMaterial == null || boidSystem == null)
             return;
 
-        RenderBoids();
+        RenderBoids(boidSystem);
     }
 
-    private void RenderBoids()
+    private void RenderBoids(BoidSystem boidSystem)
     {
         // Read boid data from GPU buffer
-        csBoids.GetBoidsData().GetData(_boidData);
+        boidSystem.GetBoidsData().GetData(_boidData);
 
         // Build transformation matrices for all boids
         for (int i = 0; i < _boidsCount; i++)
