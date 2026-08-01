@@ -20,15 +20,25 @@ public class Planet
         this.planetGO = planetGO;
         occupiedSize = 0;
         // Default production
-        factories.AddRange(FactoryList.GetDefaultFactories());
+        factories.AddRange(GameDatabase.Instance.GetDefaultFactories());
         int deepness = 1;
         factories.ForEach(factory =>
         {
             ResourceCollection resourcesNeeded = new ResourceCollection(factory.GetResources());
-            resourcesNeeded.Multiply(size / deepness);
+            resourcesNeeded.Multiply((float)size / deepness);
             factory.initFactory(resourcesNeeded, resourcesNeeded);
             deepness++;
         });
+
+        if (planetGO != null)
+        {
+            PlanetFleetBoids fleetBoids = planetGO.GetComponent<PlanetFleetBoids>();
+            if (fleetBoids == null)
+            {
+                fleetBoids = planetGO.AddComponent<PlanetFleetBoids>();
+            }
+            fleetBoids.Initialize(this, GameDatabase.Instance.BoidsComputeShader);
+        }
     }
 
     public void CreateUnit(Unit unit)
@@ -36,14 +46,8 @@ public class Planet
         bool canConsume = ConsumeResource(unit.costToCreate);
         if (canConsume)
         {
-            try
-            {
-                units[unit] += 1;
-            }
-            catch
-            {
-                units.Add(unit, 1);
-            }
+            units.TryGetValue(unit, out int count);
+            units[unit] = count + 1;
         }
     }
 
@@ -90,5 +94,19 @@ public class Planet
             }
         }
         return ships;
+    }
+
+    // Total number of ships stationed on this planet (the planet's fleet size)
+    public int GetFleetSize()
+    {
+        int total = 0;
+        foreach (var item in units)
+        {
+            if (item.Key is Ship)
+            {
+                total += item.Value;
+            }
+        }
+        return total;
     }
 }

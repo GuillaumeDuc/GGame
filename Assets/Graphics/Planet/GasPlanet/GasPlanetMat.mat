@@ -41,6 +41,11 @@ Material:
     - _AbsScale: 9.53
     - _AbsStrength: 3.69
     - _AtmoshpereStrength: 1.5
+    - _BandFrequency: 7
+    - _BandMotionSpeed: 0.03
+    - _BandMotionStrength: 0.05
+    - _BandWarpScale: 0.35
+    - _BandWarpStrength: 0.24
     - _CircleScale: 6.06
     - _CircleStrength: 1.52
     - _NoiseSlowness: 30
@@ -48,9 +53,15 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Roughness: 3
+    - _Slowness: 25.77
     - _Smoothness: 0.5
     - _SnoiseStrength: 2.18
-    - _Type: 0
+    - _StormScale: 1
+    - _StormStrength: 0.1
+    - _StormThreshold: 0.9
+    - _TurbulenceScale: 2.5
+    - _TurbulenceStrength: 0.12
+    - _Type: 1.104
     m_Colors:
     - _AtmosphereColor: {r: 0.19699526, g: 0, b: 1, a: 0}
     - _Distortion: {r: 0.05, g: 7, b: 0.05, a: 0}

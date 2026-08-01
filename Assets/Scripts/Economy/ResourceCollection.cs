@@ -3,15 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Collections.ObjectModel;
 
-public class ResourceCollection : Collection<Resource>, IEnumerator, IEnumerable
+public class ResourceCollection : Collection<Resource>
 {
-    int position = -1;
     public ResourceCollection() : base() { }
     public ResourceCollection(ResourceCollection resources)
     {
         for (int i = 0; i < resources.Items.Count; i++)
         {
             this.InsertItem(i, resources.Items[i]);
+        }
+    }
+    public ResourceCollection(List<Resource> resources)
+    {
+        foreach (var resource in resources)
+        {
+            this.Add(new Resource(resource));
         }
     }
 
@@ -65,7 +71,7 @@ public class ResourceCollection : Collection<Resource>, IEnumerator, IEnumerable
     {
         for (int i = 0; i < Items.Count; i++)
         {
-            Items[i].amount = (int)(Items[i].amount * multiplier);
+            Items[i].amount = (long)(Items[i].amount * multiplier);
         }
     }
 
@@ -107,22 +113,5 @@ public class ResourceCollection : Collection<Resource>, IEnumerator, IEnumerable
             s += Items[i] + "\n";
         }
         return s;
-    }
-
-    //IEnumerator
-    public bool MoveNext()
-    {
-        position++;
-        return (position < Items.Count);
-    }
-    //IEnumerable
-    public void Reset()
-    {
-        position = -1;
-    }
-    //IEnumerable
-    public object Current
-    {
-        get { return Items[position]; }
     }
 }

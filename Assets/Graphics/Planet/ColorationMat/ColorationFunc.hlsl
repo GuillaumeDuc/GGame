@@ -17,26 +17,34 @@ float4 getOneRegion (float3 position, float regionScale, float baseNoise, int pl
         return getDefaultForest(maskNoise, rgbOffset);
     }
   }
-  return getDefaultWater(maskNoise, (0, 0, 0));
+  return getDefaultWater(maskNoise, float3(0, 0, 0));
 }
 
 float4 getRegions (float3 position, float regionScale, float baseNoise, float3 rgbOffset) {
   float maskNoise = clamp(baseNoise, -1, 1);
-  
-  float region1Noise = clamp(evaluate(position + 10, 5, 3.5, regionScale, 5, .15f, .5f), -1, 1);
-  float region2Noise = clamp(evaluate(position + 20, 5, 3.5, regionScale, 5, .15f, .5f), -1, 1);
-  float region3Noise = clamp(evaluate(position + 30, 5, 3.5, regionScale, 5, .15f, .5f), -1, 1);
 
-  if (region1Noise > 0 && region2Noise > 0 && maskNoise > 0) {
-    return clamp(lerp(getDefaultForest(region1Noise, rgbOffset), getDefaultDesert(region2Noise, rgbOffset), region2Noise), 0, 1);
-  } else if (region1Noise > 0 && maskNoise > 0) {
-    return getDefaultForest(region1Noise, rgbOffset);
-  } else if (region2Noise > 0 && maskNoise > 0) {
-    return getDefaultDesert(region2Noise, rgbOffset);
-  } else if (region3Noise > 0 && maskNoise > 0) {
-    return getDefaultSnow(region3Noise, rgbOffset);
+  if (maskNoise <= 0) {
+    return getDefaultWater(maskNoise, float3(0, 0, 0));
   }
-  return getDefaultWater(maskNoise, (0, 0, 0));
+
+  // Independent low-frequency noise fields lay out where each biome can
+  // appear, roughly in [-1, 1].
+  float region1Noise = clamp(evaluate(position + 10, 5, 3.5, regionScale, 5, .15f, .5f), -1, 1); // forest
+  float region2Noise = clamp(evaluate(position + 20, 5, 3.5, regionScale, 5, .15f, .5f), -1, 1); // desert
+
+  // White is the fallback land color. Colored biome masks are applied after it
+  // so they replace white instead of being covered by a final snow blend.
+  float4 landColor = getDefaultSnow(maskNoise * 0.35, rgbOffset);
+
+  // smoothstep (instead of a hard > 0 branch) blends neighbouring biomes
+  // across a margin instead of cutting a jagged, unnaturally sharp edge.
+  float forestWeight = smoothstep(0.0, 0.35, region1Noise);
+  float desertWeight = smoothstep(0.0, 0.35, region2Noise);
+
+  landColor = lerp(landColor, getDefaultForest(region1Noise, rgbOffset), forestWeight);
+  landColor = lerp(landColor, getDefaultDesert(region2Noise, rgbOffset), desertWeight);
+
+  return saturate(landColor);
 }
 
 float getMountains (float3 position, float mountainScale, float baseNoise) {
@@ -76,5 +84,20 @@ void ColorationFunc_float (
   float baseNoise = clamp(evaluate(position, numLayers, strength, baseRoughness, roughness, persistence, minValue), -1, 1);
 
   color = getColorationByType(planetType, position, regionScale, baseNoise, rgbOffset);
-  smooth = planetType == 4 ? 0 : 1 - baseNoise;
+
+  float smoothness = planetType == 4 ? 0 : saturate(1 - baseNoise);
+
+  // Solid planets (not pure ocean/gas) get ridged mountain ranges: a rocky
+  // tint on high ground plus reduced smoothness there, since exposed
+  // rock/scree is rougher than vegetation, sand or ice at the same
+  // elevation. Reuses regionScale/rgbOffset so no new inputs are needed on
+  // the Custom Function node.
+  if (planetType != 4) {
+    float mountains = getMountains(position, regionScale * 4.0, baseNoise);
+    float3 rockColor = float3(0.35, 0.33, 0.30) + rgbOffset * 0.2;
+    color.rgb = lerp(color.rgb, rockColor, mountains);
+    smoothness = saturate(smoothness - mountains * 0.5);
+  }
+
+  smooth = smoothness;
 }

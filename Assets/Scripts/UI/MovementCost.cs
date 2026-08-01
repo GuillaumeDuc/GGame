@@ -27,7 +27,7 @@ public class MovementCost : MonoBehaviour
     void OnChangeSelection(string shipName, string quantity)
     {
         // Calculate resource needed for ships
-        Ship ship = UnitList.getShips().Find(ship => ship.name == shipName);
+        Ship ship = GameDatabase.Instance.getShips().Find(ship => ship.name == shipName);
         float distance = Vector3.Distance(planet.planetGO.gameObject.transform.position, attacked.planetGO.transform.position);
         Resource costResource = new Resource(ship.getTravelCost(distance));
         costResource.amount *= System.Int32.Parse(quantity);

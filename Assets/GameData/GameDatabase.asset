@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdae7296631280148a077f5056f585a3, type: 3}
+  m_Name: GameDatabase
+  m_EditorClassIdentifier: 
+  ships:
+  - {fileID: 11400000, guid: 86f0d61eedf30ca4a948cb093ab115fd, type: 2}
+  - {fileID: 11400000, guid: e602e5b819d169e458cf19b6b9d141fd, type: 2}
+  troops:
+  - {fileID: 11400000, guid: 85cec9e4bc4d70843b9c1ba523c02b6d, type: 2}
+  defenses:
+  - {fileID: 11400000, guid: c1ec46e292ff17d498786bc2cf2d690d, type: 2}
+  boidsComputeShader: {fileID: 7200000, guid: 3ce65665f60de644591adda29e28adb6, type: 3}
+  factoryDefinitions:
+  - {fileID: 11400000, guid: d310e008cafa66b4d8dd5c464fd31c0b, type: 2}
+  - {fileID: 11400000, guid: 341b0236c7ec72f41a696fc4660f1a70, type: 2}
+  - {fileID: 11400000, guid: 49edfe6b1d118704aa6602edbbb10a7b, type: 2}

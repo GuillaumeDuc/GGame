@@ -5,27 +5,23 @@ using System.Linq;
 
 public class Factory
 {
-    public string name;
-    public Sprite sprite;
+    public FactoryDefinition definition;
     public int currentLv;
     private Dictionary<int, ResourceCollection> resourcesPerLv;
     private Dictionary<int, ResourceCollection> nextLvCostPerLv;
 
-    public Factory(string name, Resource resource, int max = 10, float incrPercent = .5f)
-    {
-        this.name = name;
-        initFactory(new ResourceCollection() { resource }, new ResourceCollection() { resource }, max, incrPercent);
-    }
+    public string name => definition.name;
+    public Sprite sprite => definition.sprite;
 
-    public Factory(string name, ResourceCollection resourcesProduction, ResourceCollection nextLvCost, int max = 10, float incrPercent = .5f)
+    public Factory(FactoryDefinition definition)
     {
-        this.name = name;
-        initFactory(resourcesProduction, nextLvCost, max, incrPercent);
+        this.definition = definition;
+        initFactory(definition.GetBaseProduction(), definition.GetBaseNextLevelCost(), definition.maxLevel, definition.levelIncreasePercent);
     }
 
     public Factory(Factory f)
     {
-        this.name = f.name;
+        this.definition = f.definition;
         this.currentLv = f.currentLv;
         this.resourcesPerLv = new Dictionary<int, ResourceCollection>(f.resourcesPerLv);
         this.nextLvCostPerLv = new Dictionary<int, ResourceCollection>(f.nextLvCostPerLv);
@@ -60,7 +56,7 @@ public class Factory
 
     public int GetMaxLevel()
     {
-        return resourcesPerLv.Count();
+        return resourcesPerLv.Count;
     }
 
     public ResourceCollection GetResourcesNeededLvUp()
@@ -83,13 +79,13 @@ public class Factory
         else
         {
             Factory f = (Factory)obj;
-            return (name == f.name);
+            return (definition == f.definition);
         }
     }
 
     public override int GetHashCode()
     {
-        return name.GetHashCode();
+        return definition.GetHashCode();
     }
 
     public override string ToString()

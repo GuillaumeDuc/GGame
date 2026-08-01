@@ -10,12 +10,9 @@ public class BoidSystems
 public class BoidManager : MonoBehaviour
 {
     [SerializeField] private BoidSystems[] boidSystems;
-    private Vector3 _lastPosition;
 
     private void Start()
     {
-        _lastPosition = transform.position;
-
         // Initialize all boid systems
         if (boidSystems == null || boidSystems.Length == 0)
             return;
@@ -24,7 +21,7 @@ public class BoidManager : MonoBehaviour
         {
             if (boidSystems[i].boidSystem != null)
             {
-                boidSystems[i].boidSystem.Initialize();
+                boidSystems[i].boidSystem.Initialize(transform.position);
             }
 
             if (boidSystems[i].boidsRenderer != null && boidSystems[i].boidSystem != null)
@@ -36,37 +33,15 @@ public class BoidManager : MonoBehaviour
 
     private void Update()
     {
-        // Update simulation center if manager position changed
-        Vector3 currentPosition = transform.position;
-        if (currentPosition != _lastPosition)
-        {
-            UpdateBoidSystemsCenter(currentPosition);
-            _lastPosition = currentPosition;
-        }
-
         if (boidSystems == null || boidSystems.Length == 0)
             return;
 
-        // Simulate all boid systems
+        // Simulate all boid systems, keeping simulation bounds centered on this transform
         for (int i = 0; i < boidSystems.Length; i++)
         {
             if (boidSystems[i].boidSystem != null)
             {
-                boidSystems[i].boidSystem.Simulate(Time.deltaTime);
-            }
-        }
-    }
-
-    private void UpdateBoidSystemsCenter(Vector3 newPosition)
-    {
-        if (boidSystems == null)
-            return;
-
-        for (int i = 0; i < boidSystems.Length; i++)
-        {
-            if (boidSystems[i].boidSystem != null)
-            {
-                boidSystems[i].boidSystem.UpdateBoidsCenter(newPosition);
+                boidSystems[i].boidSystem.Simulate(Time.deltaTime, transform.position);
             }
         }
     }
@@ -138,4 +113,22 @@ public class BoidManager : MonoBehaviour
     {
         return boidSystems;
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (boidSystems == null || boidSystems.Length == 0)
+            return;
+
+        Gizmos.color = Color.cyan;
+
+        for (int i = 0; i < boidSystems.Length; i++)
+        {
+            BoidSystem boidSystem = boidSystems[i].boidSystem;
+            if (boidSystem == null)
+                continue;
+
+            Gizmos.DrawWireSphere(transform.position + boidSystem.simulationCenter, boidSystem.simulationRadius);
+        }
+    }
 }
+

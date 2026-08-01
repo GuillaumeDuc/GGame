@@ -94,9 +94,17 @@ Material:
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _CloudScale: 5.75
-    - _CloudSlowness: 150
+    - _CloudBandingFrequency: 5
+    - _CloudBandingStrength: 0.85
+    - _CloudCoverage: 0.67
+    - _CloudErosionScale: 10
+    - _CloudErosionStrength: 0.15
+    - _CloudScale: 1.46
+    - _CloudSharpness: 0.4
+    - _CloudSlowness: 50
     - _CloudStrength: 1
+    - _CloudWarpScale: 0.95
+    - _CloudWarpStrength: 0.8
     - _Cloud_Strength: 0.65
     - _Cull: 2
     - _Cutoff: 0.5
@@ -150,7 +158,7 @@ Material:
     - _Ground: {r: 0.06978583, g: 1, b: 0, a: 0}
     - _Mountain: {r: 0.9206753, g: 0, b: 1, a: 0}
     - _NoiseColor: {r: 0, g: 0.3796072, b: 1, a: 0}
-    - _Offset_Noise: {r: 2.05, g: -3.33, b: 6.67, a: 0}
+    - _Offset_Noise: {r: 0, g: -1, b: 0, a: 0}
     - _RGBOffset: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _Water: {r: 0.1009256, g: 0.37482473, b: 0.7924528, a: 0}

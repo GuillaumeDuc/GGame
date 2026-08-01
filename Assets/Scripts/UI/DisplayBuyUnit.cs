@@ -24,15 +24,15 @@ public class DisplayBuyUnit : DisplayUI
 
     void AddAllUnits()
     {
-        UnitList.getShips().ForEach(ship =>
+        GameDatabase.Instance.getShips().ForEach(ship =>
         {
             AddUnitInView(ship);
         });
-        UnitList.getDefenses().ForEach(defense =>
+        GameDatabase.Instance.getDefenses().ForEach(defense =>
         {
             AddUnitInView(defense);
         });
-        UnitList.getTroops().ForEach(troop =>
+        GameDatabase.Instance.getTroops().ForEach(troop =>
         {
             AddUnitInView(troop);
         });
@@ -56,7 +56,14 @@ public class DisplayBuyUnit : DisplayUI
 
     private void OnClickBuy(Unit unit)
     {
-        Store.player.selectedPlanet.CreateUnit(unit);
+        Planet planet = Store.player.selectedPlanet;
+        planet.CreateUnit(unit);
+        // Immediately reflect the purchase in the planet's own fleet swarm, rather than
+        // waiting for its next automatic per-frame refresh.
+        if (unit is Ship)
+        {
+            planet.planetGO?.GetComponent<PlanetFleetBoids>()?.RefreshFleet();
+        }
         Store.UpdateUI();
     }
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Resource
 {
     public TypeResource type;
@@ -12,6 +13,8 @@ public class Resource
         Water
     }
     public long amount;
+
+    public Resource() { }
 
     public Resource(Resource resource)
     {

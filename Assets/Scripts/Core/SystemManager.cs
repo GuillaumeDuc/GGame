@@ -5,12 +5,14 @@ using UnityEngine.UI;
 
 public class SystemManager : MonoBehaviour
 {
-    public Material planetMaterial;
-    public Material cloudMaterial;
     public Camera worldCamera;
+    [SerializeField] private GameDatabase gameDatabase;
 
     void Start()
     {
+        // Provide the game database before anything (e.g. Planet creation) needs it
+        GameDatabase.Provide(gameDatabase);
+
         // Create Planets
         Planet sun = PlanetFactory.CreatePlanet("Sun", 600, PlanetType.Sunlike, (int)SunType.White, new Vector3(-35, 0, 0));
         Planet p1 = PlanetFactory.CreatePlanet("First Planet", 300, PlanetType.Terrestrial, (int)TerrestrialType.Temperate, new Vector3(20, 0, 0));

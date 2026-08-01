@@ -281,7 +281,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 268076264}
   m_Direction: 0
   m_Value: 1
-  m_Size: 1
+  m_Size: 0.9999996
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4137,6 +4137,87 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1559753751}
   m_CullTransparentMesh: 1
+--- !u!1 &1575904321
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1575904323}
+  - component: {fileID: 1575904322}
+  m_Layer: 0
+  m_Name: BoidManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1575904322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575904321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88e3c90a5dd7f5c4aa5674e7c21b4279, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boidSystems:
+  - boidSystem:
+      boidsComputeShader: {fileID: 7200000, guid: 3ce65665f60de644591adda29e28adb6, type: 3}
+      boidsCount: 1000
+      cohesionRadius: 1
+      alignmentRadius: 0.6
+      separationRadius: 0.5
+      cohesionWeight: 0.5
+      alignmentWeight: 0.5
+      separationWeight: 2
+      boidMaximumSpeed: 1
+      boidMaxSteeringForce: 0.1
+      simulationCenter: {x: 0, y: 0, z: 0}
+      simulationRadius: 6
+      simulationBoundsAvoidWeight: 1
+    boidsRenderer:
+      instanceMesh: {fileID: -2432090755550338912, guid: 087308ac0acc3ee4894d62b6370592ff, type: 3}
+      instanceRenderMaterial: {fileID: 2100000, guid: f9ee07c8a39760a4a974f3df7b3748e2, type: 2}
+      boidScale: {x: 0.1, y: 0.1, z: 0.1}
+  - boidSystem:
+      boidsComputeShader: {fileID: 7200000, guid: 3ce65665f60de644591adda29e28adb6, type: 3}
+      boidsCount: 100
+      cohesionRadius: 1
+      alignmentRadius: 0.6
+      separationRadius: 0.5
+      cohesionWeight: 0.5
+      alignmentWeight: 0.5
+      separationWeight: 2
+      boidMaximumSpeed: 0.5
+      boidMaxSteeringForce: 0.1
+      simulationCenter: {x: 0, y: 0, z: 0}
+      simulationRadius: 6
+      simulationBoundsAvoidWeight: 1
+    boidsRenderer:
+      instanceMesh: {fileID: -2432090755550338912, guid: 9d1a6ab2564b23147b84316d8b9c5bc6, type: 3}
+      instanceRenderMaterial: {fileID: 2100000, guid: 41c8112033e82924b8065b6d7be556d3, type: 2}
+      boidScale: {x: 0.5, y: 0.5, z: 0.5}
+--- !u!4 &1575904323
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575904321}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 20, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1607785099
 GameObject:
   m_ObjectHideFlags: 0
@@ -4911,7 +4992,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1824361271}
   m_HandleRect: {fileID: 1824361270}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5591,9 +5672,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b133cd086751ed4880996536bdd661e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planetMaterial: {fileID: 0}
-  cloudMaterial: {fileID: 0}
   worldCamera: {fileID: 963194227}
+  gameDatabase: {fileID: 11400000, guid: ea194a2177d63694585dd506b87ae621, type: 2}
 --- !u!1 &2016221285
 GameObject:
   m_ObjectHideFlags: 0
@@ -7246,3 +7326,4 @@ SceneRoots:
   - {fileID: 347672649}
   - {fileID: 1050707768}
   - {fileID: 2002369079}
+  - {fileID: 1575904323}

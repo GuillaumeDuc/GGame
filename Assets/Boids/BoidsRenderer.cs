@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [System.Serializable]
 public class BoidsRenderer
@@ -6,6 +7,7 @@ public class BoidsRenderer
     public Mesh instanceMesh;
     public Material instanceRenderMaterial;
     public Vector3 boidScale = new(0.2f, 0.2f, 0.2f);
+    public bool noShadow = true;
 
     private int _boidsCount;
     private BoidData[] _boidData;
@@ -63,6 +65,14 @@ public class BoidsRenderer
         }
 
         // Draw all boids with computed matrices
-        Graphics.DrawMeshInstanced(instanceMesh, 0, instanceRenderMaterial, _matrices, _boidsCount);
+        Graphics.DrawMeshInstanced(
+            instanceMesh,
+            0,
+            instanceRenderMaterial,
+            _matrices,
+            _boidsCount,
+            null,
+            noShadow ? ShadowCastingMode.Off : ShadowCastingMode.On,
+            true);
     }
 }

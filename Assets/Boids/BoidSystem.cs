@@ -42,16 +42,16 @@ public class BoidSystem
     private int _boidsDataKernelId;
     private bool _isInitialized = false;
 
-    public void Initialize()
+    public void Initialize(Vector3 originPosition)
     {
         if (_isInitialized) return;
 
-        InitBuffers();
+        InitBuffers(originPosition);
         InitKernels();
         _isInitialized = true;
     }
 
-    private void InitBuffers()
+    private void InitBuffers(Vector3 originPosition)
     {
         _boidsDataBuffer = new ComputeBuffer(boidsCount, sizeof(float) * 6);
         _boidsSteeringForcesBuffer = new ComputeBuffer(boidsCount, sizeof(float) * 3);
@@ -59,10 +59,12 @@ public class BoidSystem
         Vector3[] forceArr = new Vector3[boidsCount];
         BoidData[] boidDataArr = new BoidData[boidsCount];
 
+        Vector3 spawnCenter = originPosition + simulationCenter;
+
         for (var i = 0; i < boidsCount; i++)
         {
             forceArr[i] = Vector3.zero;
-            boidDataArr[i].position = simulationCenter + Random.insideUnitSphere * 1.0f;
+            boidDataArr[i].position = spawnCenter + Random.insideUnitSphere * 1.0f;
             boidDataArr[i].velocity = Random.insideUnitSphere * 0.1f;
         }
 
@@ -80,7 +82,7 @@ public class BoidSystem
         _dispatchedThreadGroupSize = (boidsCount + (int)_storedThreadGroupSize - 1) / (int)_storedThreadGroupSize;
     }
 
-    public void UpdateShaderParameters()
+    public void UpdateShaderParameters(Vector3 originPosition)
     {
         if (boidsComputeShader == null) return;
 
@@ -93,11 +95,11 @@ public class BoidSystem
         boidsComputeShader.SetFloat("_CohesionWeight", cohesionWeight);
         boidsComputeShader.SetFloat("_AlignmentWeight", alignmentWeight);
         boidsComputeShader.SetFloat("_SimulationBoundsAvoidWeight", simulationBoundsAvoidWeight);
-        boidsComputeShader.SetVector("_SimulationCenter", simulationCenter);
+        boidsComputeShader.SetVector("_SimulationCenter", originPosition + simulationCenter);
         boidsComputeShader.SetFloat("_SimulationRadius", simulationRadius);
     }
 
-    public void Simulate(float deltaTime)
+    public void Simulate(float deltaTime, Vector3 originPosition)
     {
         if (boidsComputeShader == null || !_isInitialized) return;
 
@@ -108,7 +110,7 @@ public class BoidSystem
         boidsComputeShader.SetBuffer(_boidsDataKernelId, "_BoidsSteeringForcesBuffer", _boidsSteeringForcesBuffer);
         boidsComputeShader.SetBuffer(_boidsDataKernelId, "_BoidsDataBufferRw", _boidsDataBuffer);
 
-        UpdateShaderParameters();
+        UpdateShaderParameters(originPosition);
 
         boidsComputeShader.SetFloat("_DeltaTime", deltaTime);
 
@@ -128,14 +130,6 @@ public class BoidSystem
         if (buffer == null) return;
         buffer.Release();
         buffer = null;
-    }
-
-    public void UpdateBoidsCenter(Vector3 newCenter)
-    {
-        if (!_isInitialized || _boidsDataBuffer == null)
-            return;
-
-        simulationCenter = newCenter;
     }
 
     public ComputeBuffer GetBoidsData()

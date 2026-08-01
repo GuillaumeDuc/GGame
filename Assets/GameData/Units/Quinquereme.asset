@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea2fdfd8fbfb44243a76127ff347ffe9, type: 3}
+  m_Name: Quinquereme
+  m_EditorClassIdentifier: 
+  _hp: 1000
+  _power: 500
+  _shield: 0
+  _sprite: {fileID: 0}
+  _costToCreate:
+  - type: 0
+    amount: 750
+  - type: 1
+    amount: 400
+  _overlandSpeed: 1
+  _speed: 10
+  _travelCost:
+    type: 1
+    amount: 1000
+  _fleetPrefab: {fileID: 0}
+  _instanceMesh: {fileID: -2432090755550338912, guid: 9d1a6ab2564b23147b84316d8b9c5bc6, type: 3}
+  _instanceMaterial: {fileID: 2100000, guid: 41c8112033e82924b8065b6d7be556d3, type: 2}
+  _boidScale: {x: 0.5, y: 0.5, z: 0.5}
